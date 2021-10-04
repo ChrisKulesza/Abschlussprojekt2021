@@ -40,8 +40,8 @@ namespace Abschlussprojekt2021
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
         {
-
-            //NTExMzY2QDMxMzkyZTMzMmUzMGY4MlFsbHFtUFRScTFvcDNOYzAzb2k5MnlnaDJvZEFEb1hEb1Ezd2VUWXM9
+            // Register Syncfusion Community License
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTExMzY2QDMxMzkyZTMzMmUzMGY4MlFsbHFtUFRScTFvcDNOYzAzb2k5MnlnaDJvZEFEb1hEb1Ezd2VUWXM9");
 
             if (env.IsDevelopment())
             {

@@ -2,9 +2,21 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    List<object> toolbarItems = new List<object>();
+    List<object> commands = new List<object>();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <ejs-grid id="Grid"
+              dataSource="@Model.JobAds">
+        <e-grid-columns>
+            <e-grid-column field="Name" headerText="Job Ad" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Position" headerText="Position" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Description" headerText="Description" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="MainSkills" headerText="Main Skills" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Region" headerText="Region" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Startdate" headerText="Startdate" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Timeframe" headerText="Timeframe" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+        </e-grid-columns>
+    </ejs-grid>
 </div>
