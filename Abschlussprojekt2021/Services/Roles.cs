@@ -8,6 +8,11 @@ namespace Abschlussprojekt2021.Services
 {
     public class Roles
     {
+        /// <summary>
+        /// Creates the roles stored in the method and writes them to the database.
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <returns></returns>
         public static async Task createRoles(IServiceProvider serviceProvider)
         {
             try

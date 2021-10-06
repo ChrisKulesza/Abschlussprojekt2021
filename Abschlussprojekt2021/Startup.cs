@@ -32,8 +32,32 @@ namespace Abschlussprojekt2021
                 options.UseSqlServer(connection));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+            // identity configuration
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                // password settings
+                options.Password.RequireDigit = false; // 0-9
+                options.Password.RequireLowercase = true; // a-z
+                options.Password.RequireUppercase = true; // A-Z
+                options.Password.RequireNonAlphanumeric = false; // !"§$%
+                options.Password.RequiredLength = 6;
+
+                // lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // user settings
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = true;
+
+                // // Sign In nur nach Double Opt-In möglich.
+                options.SignIn.RequireConfirmedEmail = false;
+            })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddRazorPages();
         }
 

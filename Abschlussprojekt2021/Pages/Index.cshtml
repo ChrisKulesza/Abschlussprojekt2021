@@ -4,19 +4,49 @@
     ViewData["Title"] = "Home page";
     List<object> toolbarItems = new List<object>();
     List<object> commands = new List<object>();
+
+    toolbarItems.Add("Search");
+
+    // RBAC here
+    toolbarItems.Add(new { text = "Add JobAd", id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
+    commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deleteButton" } });
+    commands.Add(new { type = "Edit", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editButton" } });
+    commands.Add(new { type = "Copy", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat", id = "copyButton" } });
 }
+@Html.AntiForgeryToken()
 
 <div>
     <ejs-grid id="Grid"
-              dataSource="@Model.JobAds">
+              dataSource="@Model.JobAds"
+              allowPaging="true"
+              toolbar="toolbarItems"
+              toolbarClick="toolbarClick">
+        <e-grid-filtersettings type="Menu"></e-grid-filtersettings>
+
         <e-grid-columns>
             <e-grid-column field="Name" headerText="Job Ad" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
             <e-grid-column field="Position" headerText="Position" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
             <e-grid-column field="Description" headerText="Description" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="MainSkills" headerText="Main Skills" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="MainSkills" headerText="Main Skills" textAlign="Left" width="auto" hideAtMedia="(min-width:2100px)" clipMode="EllipsisWithTooltip"></e-grid-column>
             <e-grid-column field="Region" headerText="Region" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="Startdate" headerText="Startdate" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="Timeframe" headerText="Timeframe" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="StartDate" type="date" format="dd.MM.yyyy" headerText="Start Date" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="" headerText="CRUD Operations" width="auto" commands="commands"></e-grid-column>
         </e-grid-columns>
     </ejs-grid>
 </div>
+
+<script>
+    //JQuery function to switch to the "create a new job ad page"
+    function toolbarClick(args) {
+        if (args.item.id === 'addJobAd') {
+            window.location.href = 'CreateJobAd';
+        }
+    }
+
+    //function commandClick(args) {
+    //    if (args.target.title === 'Delete') {
+    //        $("#JobAdId").val(args.rowData.Id);
+    //        console.log(args.rowData.Id);
+    //    }
+    //}
+</script>

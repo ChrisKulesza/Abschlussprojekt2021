@@ -1,17 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["Title"] = "Abschlussprojekt2021";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Abschlussprojekt2021</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"]</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <!-- Add by me -->
+    <!-- Added by me -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script><!-- Syncfusion Essential JS 2 Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- JQuery for securityPrompt, returnPage, returnIndex -->
-    <!-- If it doesn't work. The order in which the styles are integrated is important. -->
-    <link href="//cdn.syncfusion.com/ej2/material.css" rel="stylesheet" /><!-- RTE (Rich Text Editor) -->
+    <link href="//cdn.syncfusion.com/ej2/material.css" rel="stylesheet" /> <!--RTE (Rich Text Editor)-->
+    <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" /><!-- Font awesome -->
 </head>
 <body>
@@ -45,7 +49,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - Abschlussprojekt2021 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2021 - Abschlussprojekt2021 | @Constants.Author<!-- - <a asp-area="" asp-page="/Privacy">Privacy</a>-->
         </div>
     </footer>
 

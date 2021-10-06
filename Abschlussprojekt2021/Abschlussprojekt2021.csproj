@@ -18,4 +18,8 @@
     <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="19.3.0.43" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\font-awesome\" />
+  </ItemGroup>
+
 </Project>

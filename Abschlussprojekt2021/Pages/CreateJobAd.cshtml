@@ -1,0 +1,53 @@
+﻿@page
+@model CreateJobAdModel
+@{
+    ViewData["Title"] = "Create Job Ad";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div class="form-group col-md-4">
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span class="text-danger" asp-validation-for="Input.Name"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Input.Position"></label>
+                <input asp-for="Input.Position" class="form-control" />
+                <span class="text-danger" asp-validation-for="Input.Position"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Input.Description"></label>
+                <input asp-for="Input.Description" class="form-control" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Input.MainSkills"></label>
+                <input asp-for="Input.MainSkills" class="form-control" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Input.Region"></label>
+                <input asp-for="Input.Region" class="form-control" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Input.Startdate"></label>
+                <input asp-for="Input.Startdate" class="form-control" />
+            </div>
+            @*<div class="form-group col-md-4">
+                <label asp-for="Input.Timeframe"></label>
+                <input asp-for="Input.Timeframe" class="form-control" />
+            </div>*@
+
+            <!-- Buttons -->
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-secondary">@Constants.BtnSave</button>
+                <button class="btn btn-secondary">@Constants.BtnCancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Data Annotations (code behind) -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

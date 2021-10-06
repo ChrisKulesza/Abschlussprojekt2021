@@ -69,3 +69,20 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/* Own changes
+-------------------------------------------------- */
+:root {
+    --companyPurple: #753BBD;
+    --companyGray: #595959;
+}
+
+/*.e-link .e-numericitem, .e-spacing .e-currentitem .e-active {
+    background-color: #753BBD;
+}*/
+
+.e-link, .e-numericitem, .e-spacing, .e-currentitem, .e-active {
+    background: var(--companyPurple) !important;
+    color: #fff;
+    opacity: 1;
+}
