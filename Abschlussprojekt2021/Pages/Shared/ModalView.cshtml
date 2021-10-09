@@ -1,0 +1,31 @@
+﻿@page
+@model Abschlussprojekt2021.Pages.Shared.ModalViewModel
+@{
+    Layout = null;
+
+    ViewData["Title"] = "Partial Page - Modal";
+
+    // Modal buttons
+    var btnDeleteConfirmation = new Button() { content = @Constants.BtnDelete, cssClass = "e-flat" };
+    var btnCancel = new Button() { isPrimary = true, content = Constants.BtnCancel, cssClass = "e-flat" };
+}
+
+<div id="container" style="height:100px;">
+    <ejs-dialog id="dialog" header="Löschen bestätigen" content=@Constants.TxtDeleteConfirmation visible="true" width="550px" showCloseIcon="true">
+        <e-dialog-animationsettings effect="Zoom" duration="400"></e-dialog-animationsettings>
+        <e-dialog-buttons>
+            <e-dialog-dialogbutton buttonModel="@btnDeleteConfirmation" click="dlgButtonClick"></e-dialog-dialogbutton>
+            <e-dialog-dialogbutton buttonModel="@btnCancel" click="dlgButtonClick"></e-dialog-dialogbutton>
+        </e-dialog-buttons>
+    </ejs-dialog>
+</div>
+
+<script>
+    function dlgButtonClick() {
+        var dialogObj = document.getElementById('dialog').ej2_instances[0];
+        dialogObj.hide();
+        document.getElementById('dialog').remove();
+    }
+</script>
+
+<ejs-scripts></ejs-scripts>

@@ -2,38 +2,59 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+
     List<object> toolbarItems = new List<object>();
     List<object> commands = new List<object>();
 
     toolbarItems.Add("Search");
 
     // RBAC here
-    toolbarItems.Add(new { text = "Add JobAd", id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
-    commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deleteButton" } });
-    commands.Add(new { type = "Edit", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editButton" } });
-    commands.Add(new { type = "Copy", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat", id = "copyButton" } });
+    if (User.IsInRole(Constants.RoleAdmin) || User.IsInRole(Constants.RoleEditor))
+    {
+        toolbarItems.Add(new { text = "Add JobAd", id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
+        commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deleteButton" } });
+        commands.Add(new { type = "Edit", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editButton" } });
+        commands.Add(new { type = "Copy", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat", id = "copyButton" } });
+    }
+    commands.Add(new { type = "Details", buttonOption = new { iconCss = Constants.IconDetails, cssClass = "e-flat", id = "DetailsButton" } });
 }
 @Html.AntiForgeryToken()
 
 <div>
-    <ejs-grid id="Grid"
+    <ejs-grid id="DataGrid"
               dataSource="@Model.JobAds"
               allowPaging="true"
               toolbar="toolbarItems"
-              toolbarClick="toolbarClick">
+              toolbarClick="toolbarClick"
+              commandClick="commandClick">
         <e-grid-filtersettings type="Menu"></e-grid-filtersettings>
 
         <e-grid-columns>
             <e-grid-column field="Name" headerText="Job Ad" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
             <e-grid-column field="Position" headerText="Position" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="Description" headerText="Description" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="MainSkills" headerText="Main Skills" textAlign="Left" width="auto" hideAtMedia="(min-width:2100px)" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="Region" headerText="Region" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="StartDate" type="date" format="dd.MM.yyyy" headerText="Start Date" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="" headerText="CRUD Operations" width="auto" commands="commands"></e-grid-column>
+            <e-grid-column field="Description" headerText="Description" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width: 1100px)" -->
+            <e-grid-column field="MainSkills" headerText="Main Skills" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width: 700px)" -->
+            <e-grid-column field="Region" headerText="Region" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width:700px)" -->
+            <e-grid-column field="StartDate" type="date" format="dd.MM.yyyy" headerText="Start Date" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="min-width:500px" -->
+            <e-grid-column field="" width="190px" commands="commands"></e-grid-column>
         </e-grid-columns>
     </ejs-grid>
 </div>
+
+<!-- Test button -->
+<div>
+    <ejs-button isPrimary=true id="but" onclick="clickAjax()"><e-content-template>Open Reusable Dialog</e-content-template></ejs-button>
+</div>
+
+<!-- Modal window - showing here-->
+<div id="PartialView"></div>
+
+@*<ej-dialog id="seconddialog" title="Warning" width="400" height="300" show-on-init="false">
+    <e-dialog-position x-value="300" y-value="20" />
+    <e-content-template>
+        <p>This is a nested dialog</p>
+    </e-content-template>
+</ej-dialog>*@
 
 <script>
     //JQuery function to switch to the "create a new job ad page"
@@ -43,10 +64,44 @@
         }
     }
 
-    //function commandClick(args) {
-    //    if (args.target.title === 'Delete') {
-    //        $("#JobAdId").val(args.rowData.Id);
-    //        console.log(args.rowData.Id);
-    //    }
-    //}
+    function commandClick(args) {
+        // Get DataGrid Element
+        var grid = document.getElementById('DataGrid').ej2_instances[0];
+        // Case distinction - which commandIcon was clicked
+        if (args.commandColumn.type == 'Details') {
+            window.location.href = 'JobDetails?id=' + args.rowData.Id;
+        }
+        else if (args.commandColumn.type == 'Edit') {
+            window.location.href = 'EditJobAd?id=' + args.rowData.Id;
+        }
+
+        // OLD Code | Karriere Webseite
+        //if (args.target.title === 'Edit') {
+        //    window.location.href = '/EditJobAd/' + args.rowData.Id;
+        //}
+        //else if (args.target.title === 'Details') {
+        //    window.location.href = '/JobDetails?id=' + args.rowData.Id;
+        //}
+        //else if (args.target.title === 'Delete') {
+        //        $("#seconddialog").ejDialog("open");
+        //    //ej.popups.DialogUtility.confirm('Do you really want to delete the chosen entry?');
+        //    //window.location.href = '/JobDetails/' + args.rowData.Id;
+        //}
+
+    }
+</script>
+
+<!-- Modal window- Partial View -->
+<script>
+    function clickAjax() {
+        var ajax = new ej.base.Ajax('/Shared/modalview', 'GET', true);
+        ajax.send().then(function (result) {
+            var partialElem = document.getElementById('PartialView');
+            partialElem.innerHTML = result;
+            var scriptElm = partialElem.querySelectorAll('script')
+            for (var i = 0; i < scriptElm.length; i++) {
+                eval(scriptElm[i].innerHTML);
+            }
+        });
+    }
 </script>

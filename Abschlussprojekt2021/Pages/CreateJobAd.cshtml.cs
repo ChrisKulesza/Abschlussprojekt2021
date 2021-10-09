@@ -41,7 +41,7 @@ namespace Abschlussprojekt2021.Pages
             public string Region { get; set; }
 
             [DataType(DataType.Date)]
-            public DateTime Startdate { get; set; }
+            public DateTime StartDate { get; set; }
 
             [DataType(DataType.Date)]
             public DateTime Timeframe { get; set; }
@@ -68,7 +68,7 @@ namespace Abschlussprojekt2021.Pages
                 Description = Input.Description,
                 MainSkills = Input.MainSkills,
                 Region = Input.Region,
-                StartDate = Input.Startdate,
+                StartDate = Input.StartDate,
                 Timeframe = Input.Timeframe
             };
 

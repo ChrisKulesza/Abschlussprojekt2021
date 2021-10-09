@@ -1,0 +1,74 @@
+﻿@page
+@model JobDetailsModel
+@{
+    ViewData["Title"] = "Job Datails";
+}
+
+<!-- Jobinfo - Karte -->
+<div class="d-flex justify-content-center">
+    <div class="col jobad">
+        <p>
+            <h5>Job Ad</h5>
+        </p>
+        <p class="text-uppercase">@Model.JobAd.Name</p>
+
+        <p>
+            Position<br />
+            @Model.JobAd.Position
+        </p>
+
+        <p>
+            Main Skills<br />
+            @Model.JobAd.MainSkills
+        </p>
+
+        <p>
+            Region<br />
+            @Model.JobAd.Region
+        </p>
+
+        <p>
+            Description<br />
+            @Model.JobAd.Description
+        </p>
+
+        <p>
+            Start date<br />
+            @Model.JobAd.StartDate.ToString("ddd., dd.MM.yyyy")
+        </p>
+
+        <!-- Button - Redirect to Landingpage -->
+        <p class="text-center">
+            <a class="btn-secondary btn" asp-page="/Index">Home</a>
+        </p>
+    </div>
+</div>
+
+<!-- Kontaktformular -->
+<div class="d-flex justify-content-center customForm">
+    <div class="col jobad">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Message"></label>
+                <input asp-for="Input.Message" class="form-control" />
+            </div>
+            <div class="containerDsgvo">
+                <input type="checkbox" value="" />
+                <span class="dsgvo">@Constants.TextDSGVOCheckbox</span>
+            </div>
+
+            <!-- Button - Redirect to Landingpage -->
+            <p class="text-center">
+                <button class="btn btn-secondary" type="submit">Bewerben</button>
+            </p>
+        </form>
+    </div>
+</div>

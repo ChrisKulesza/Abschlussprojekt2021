@@ -10,13 +10,14 @@ using System.Linq;
 
 namespace Abschlussprojekt2021.Pages
 {
+    [BindProperties]
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly ApplicationDbContext _context;
+
         public List<JobAd> JobAds { get; set; }
 
-        [BindProperty]
         public int JobAdId { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context)

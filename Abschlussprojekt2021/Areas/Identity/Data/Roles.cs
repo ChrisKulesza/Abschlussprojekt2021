@@ -4,8 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 
-namespace Abschlussprojekt2021.Services
+namespace Abschlussprojekt2021.Areas.Identity.Data
 {
+    // This class must be in the scope of Identity. Otherwise the roles are not persisted in the database.
     public class Roles
     {
         /// <summary>
@@ -21,21 +22,21 @@ namespace Abschlussprojekt2021.Services
 
                 IdentityResult roleResult;
                 // Adding admin role
-                var roleCheck = await RoleManager.RoleExistsAsync(Constants.Admin);
+                var roleCheck = await RoleManager.RoleExistsAsync(Constants.RoleAdmin);
                 // checking if role already exists
                 if (!roleCheck)
                 {
                     // create the role and seed them to the database if not exist
-                    roleResult = await RoleManager.CreateAsync(new IdentityRole(Constants.Admin));
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(Constants.RoleAdmin));
                 }
 
                 // Adding editor role
-                roleCheck = await RoleManager.RoleExistsAsync(Constants.Editor);
+                roleCheck = await RoleManager.RoleExistsAsync(Constants.RoleEditor);
                 // checking if role already exists
                 if (!roleCheck)
                 {
                     // create the role and seed them to the database if not exist
-                    roleResult = await RoleManager.CreateAsync(new IdentityRole(Constants.Editor));
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(Constants.RoleEditor));
                 }
             }
             catch (Exception e)

@@ -70,11 +70,13 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-/* Own changes
+/* Own changes - defining Company Colors
 -------------------------------------------------- */
 :root {
-    --companyPurple: #753BBD;
-    --companyGray: #595959;
+    --companyColorPurple: #753bbd;
+    --companyColorGrayOne: #595959;
+    --companyColorGrayTwo: #737373;
+    --companyColorGrayThree: #888888;
 }
 
 /*.e-link .e-numericitem, .e-spacing .e-currentitem .e-active {
@@ -86,3 +88,68 @@ body {
     color: #fff;
     opacity: 1;
 }
+
+/* Logout Infotext
+-------------------------------------------------- */
+.alert-custom {
+    background-color: var(--companyColorGrayOne);
+    color: #fff;
+}
+
+/* Form Control Focus
+-------------------------------------------------- */
+.form-control:focus {
+    background-color: #fff;
+    border-color: var(--companyColorPurple) !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(24, 35, 229, 0.2);
+}
+
+/* Syncfusion Dialog Box - Area
+-------------------------------------------------- */
+/* Box Shadow Try */
+.e-dialog {
+    background-color: #fff;
+    box-shadow: 0 11px 15px -7px rgb(117 59 189 / 20%), 0 24px 38px 3px rgb(117 59 189 / 14%), 0 9px 46px 8px rgb(117 59 189 / 12%);
+}
+
+/* Dialog Box - background gray */
+.e-dlg-overlay {
+    background-color: slategray;
+    opacity: 0.6;
+}
+
+/* customize the dialog header */
+.e-dialog .e-dlg-header {
+    color: red;
+    font-size: 20px;
+    font-weight: normal;
+}
+/* -------------------------------------------------- */
+
+/* JobAd Detail Page
+-------------------------------------------------- */
+.jobad {
+    border: 1px solid lightgrey;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    font-size: 16px !important;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+/* Kontaktformular */
+.customForm {
+    padding-top: 1rem;
+}
+.customForm::after {
+    margin-bottom: 200px;
+}
+/* Abstand button bewerben zur DSGVO - Checkbox */
+.containerDsgvo {
+    margin-bottom: 2rem;
+}
+/* Kontaktformular */
+.dsgvo {
+    padding-left: .2rem;
+}
+/* -------------------------------------------------- */
+

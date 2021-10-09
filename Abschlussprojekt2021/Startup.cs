@@ -1,5 +1,5 @@
+using Abschlussprojekt2021.Areas.Identity.Data;
 using Abschlussprojekt2021.Data;
-using Abschlussprojekt2021.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -52,7 +52,8 @@ namespace Abschlussprojekt2021
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
 
-                // // Sign In nur nach Double Opt-In möglich.
+                // Confirmation at SignIn
+                options.SignIn.RequireConfirmedAccount = false;
                 options.SignIn.RequireConfirmedEmail = false;
             })
                 .AddRoles<IdentityRole>()
@@ -89,8 +90,11 @@ namespace Abschlussprojekt2021
                 RequestPath = new PathString("/img")
             });
 
-            app.UseRouting();
+            // Here is our middleware registration
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            //app.UseStatusCodePagesWithReExecute("/Error", "?code={0}");
 
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -103,6 +107,7 @@ namespace Abschlussprojekt2021
             AppDbInitializer.Seed(app);
 
             // Create the roles if they don't already exist
+            //Roles.createRoles(services).Wait();
             Roles.createRoles(services).Wait();
         }
     }

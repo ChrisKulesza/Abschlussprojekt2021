@@ -1,43 +1,44 @@
 ﻿@page
-@model CreateJobAdModel
+@model EditJobAdModel
 @{
-    ViewData["Title"] = "Create Job Ad";
+    ViewData["Title"] = "Edit Job";
 }
+
+<h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-12">
         <form method="post">
             <div class="form-group col-md-4">
                 <label asp-for="Input.Name"></label>
-                <input asp-for="Input.Name" class="form-control" />
+                <input asp-for="Input.Name" class="form-control" value="@Model.JobAd.Name" />
                 <span class="text-danger" asp-validation-for="Input.Name"></span>
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.Position"></label>
-                <input asp-for="Input.Position" class="form-control" />
+                <input asp-for="Input.Position" class="form-control" value="@Model.JobAd.Position" />
                 <span class="text-danger" asp-validation-for="Input.Position"></span>
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.Description"></label>
-                <input asp-for="Input.Description" class="form-control" />
+                <input asp-for="Input.Description" class="form-control" value="@Model.JobAd.Description" />
+                <span class="text-danger" asp-validation-for="Input.Description"></span>
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.MainSkills"></label>
-                <input asp-for="Input.MainSkills" class="form-control" />
+                <input asp-for="Input.MainSkills" class="form-control" value="@Model.JobAd.MainSkills" />
+                <span class="text-danger" asp-validation-for="Input.MainSkills"></span>
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.Region"></label>
-                <input asp-for="Input.Region" class="form-control" />
+                <input asp-for="Input.Region" class="form-control" value="@Model.JobAd.Region" />
+                <span class="text-danger" asp-validation-for="Input.Region"></span>
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.StartDate"></label>
-                <input asp-for="Input.StartDate" class="form-control" />
+                <input id="dateInput" asp-for="Input.StartDate" class="form-control" value="@Model.JobAd.StartDate.ToString("yyyy-MM-dd")" />
+                <span class="text-danger" asp-validation-for="Input.StartDate"></span>
             </div>
-            @*<div class="form-group col-md-4">
-                <label asp-for="Input.Timeframe"></label>
-                <input asp-for="Input.Timeframe" class="form-control" />
-            </div>*@
-
             <!-- Buttons -->
             <div class="col-md-4">
                 <button type="submit" class="btn btn-secondary">@Constants.BtnSave</button>
@@ -47,7 +48,7 @@
     </div>
 </div>
 
-<!-- Data Annotations (code behind) -->
+<!-- Valdiates user input and shows error messages -->
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

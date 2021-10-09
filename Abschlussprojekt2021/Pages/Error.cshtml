@@ -1,4 +1,12 @@
-﻿@page
+﻿@*@page "/404"
+    @{
+        ViewData["Title"] = "No such page";
+    }
+
+    <h1>404 not found</h1>
+    <p>No such page exists at this location</p>*@
+
+@page
 @model ErrorModel
 @{
     ViewData["Title"] = "Error";
