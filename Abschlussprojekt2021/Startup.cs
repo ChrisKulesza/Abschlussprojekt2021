@@ -92,7 +92,6 @@ namespace Abschlussprojekt2021
 
             // Here is our middleware registration
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
-            //app.UseStatusCodePagesWithReExecute("/Error", "?code={0}");
 
             app.UseRouting();
             app.UseAuthentication();

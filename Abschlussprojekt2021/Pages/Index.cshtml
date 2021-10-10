@@ -11,7 +11,7 @@
     // RBAC here
     if (User.IsInRole(Constants.RoleAdmin) || User.IsInRole(Constants.RoleEditor))
     {
-        toolbarItems.Add(new { text = "Add JobAd", id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
+        toolbarItems.Add(new { text = "Neue Stelle", id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
         commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deleteButton" } });
         commands.Add(new { type = "Edit", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editButton" } });
         commands.Add(new { type = "Copy", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat", id = "copyButton" } });
@@ -74,6 +74,10 @@
         }
         else if (args.commandColumn.type == 'Edit') {
             window.location.href = 'EditJobAd?id=' + args.rowData.Id;
+        }
+        https://www.syncfusion.com/forums/144570/syncfusion-grid-add-button-does-not-fire
+        else if (args.commandColumn.type == 'Delete') {
+
         }
 
         // OLD Code | Karriere Webseite

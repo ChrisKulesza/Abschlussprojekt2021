@@ -1,5 +1,6 @@
 using Abschlussprojekt2021.Data;
 using Abschlussprojekt2021.Models;
+using Abschlussprojekt2021.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -49,14 +50,9 @@ namespace Abschlussprojekt2021.Pages
 
         public void OnGet()
         {
-            toolsList = new List<string>
-            {
-                "Bold", "Italic", "FontName", "FontSize", "FontColor", "|",
-                "OrderedList", "UnorderedList", "|",
-                "Formats", "Alignments", "Outdent", "Indent", "|",
-                "CreateLink", "|"
-                // "Undo", "Redo"
-            };
+            // Get RTE Options | Syncfusion
+            RichTextOptions rteOptions = new RichTextOptions();
+            rteOptions.GetRTEOptionsMinimumScope();
         }
 
         public async Task<RedirectResult> OnPostAsync()

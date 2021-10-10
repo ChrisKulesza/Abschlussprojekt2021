@@ -18,8 +18,6 @@ namespace Abschlussprojekt2021.Pages
 
         public List<JobAd> JobAds { get; set; }
 
-        public int JobAdId { get; set; }
-
         public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context)
         {
             _logger = logger;
@@ -31,14 +29,10 @@ namespace Abschlussprojekt2021.Pages
             JobAds = _context.JobAds.ToList();
         }
 
-        public RedirectResult OnPostRemove([FromBody]CRUDModel<JobAd> value)
+        [HttpPost]
+        public RedirectResult OnPostRemove(int id)
         {
-            if (ModelState.IsValid)
-            {
-            }
-
-            int id = Int32.Parse(value.Key.ToString());
-            JobAd jobAd = _context.JobAds.Where(j => j.Id == id).FirstOrDefault();
+            var jobAd = _context.JobAds.Where(j => j.Id == id).FirstOrDefault();
 
             _context.Remove(jobAd);
             _context.SaveChanges();
