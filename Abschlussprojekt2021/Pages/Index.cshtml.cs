@@ -3,8 +3,6 @@ using Abschlussprojekt2021.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Syncfusion.EJ2.Base;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,17 +25,6 @@ namespace Abschlussprojekt2021.Pages
         public void OnGet()
         {
             JobAds = _context.JobAds.ToList();
-        }
-
-        [HttpPost]
-        public RedirectResult OnPostRemove(int id)
-        {
-            var jobAd = _context.JobAds.Where(j => j.Id == id).FirstOrDefault();
-
-            _context.Remove(jobAd);
-            _context.SaveChanges();
-
-            return Redirect("Index");
         }
     }
 }
