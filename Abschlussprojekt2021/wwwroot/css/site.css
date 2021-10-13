@@ -1,11 +1,22 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+/* Own changes - defining Company Colors */
+:root {
+    --companyColorPurple: #753bbd;
+    --companyColorGrayOne: #595959;
+    --companyColorGrayTwo: #737373;
+    --companyColorGrayThree: #888888;
+}
+/* -------------------------------------------------- */
+
+/* Company logo adjustments */
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 }
+/* -------------------------------------------------- */
 
 /* Provide sufficient contrast against white background */
 a {
@@ -70,15 +81,6 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-/* Own changes - defining Company Colors
--------------------------------------------------- */
-:root {
-    --companyColorPurple: #753bbd;
-    --companyColorGrayOne: #595959;
-    --companyColorGrayTwo: #737373;
-    --companyColorGrayThree: #888888;
-}
-
 /*.e-link .e-numericitem, .e-spacing .e-currentitem .e-active {
     background-color: #753BBD;
 }*/
@@ -89,12 +91,12 @@ body {
     opacity: 1;
 }
 
-/* Logout Infotext
--------------------------------------------------- */
+/* Logout Infotext */
 .alert-custom {
     background-color: var(--companyColorGrayOne);
     color: #fff;
 }
+/* -------------------------------------------------- */
 
 /* Form Control Focus
 -------------------------------------------------- */
@@ -105,8 +107,7 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(24, 35, 229, 0.2);
 }
 
-/* Syncfusion Dialog Box - Area
--------------------------------------------------- */
+/* Syncfusion Dialog Box - Area */
 /* Box Shadow Try */
 .e-dialog {
     background-color: #fff;
@@ -127,8 +128,7 @@ body {
 }
 /* -------------------------------------------------- */
 
-/* JobAd Detail Page
--------------------------------------------------- */
+/* JobAd Detail Page */
 .jobad {
     border: 1px solid lightgrey;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -153,3 +153,9 @@ body {
 }
 /* -------------------------------------------------- */
 
+/* Syncfusion icon - change color by hovering to companyPurple */
+.e-lib.e-btn.e-control.e-flat.e-icon-btn:hover {
+    transition: all 0.5s ease;
+    color: var(--companyColorPurple);
+}
+/* -------------------------------------------------- */

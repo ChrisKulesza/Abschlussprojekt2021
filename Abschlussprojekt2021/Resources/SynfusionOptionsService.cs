@@ -29,7 +29,7 @@ namespace Abschlussprojekt2021.Resources
         /// Provides the RTE options. The scope is minimal in the context of the project.
         /// </summary>
         /// <returns>Returns a list of options for the Syncfusion UI component RTE.</returns>
-        public IEnumerable<string> RTEOptionsListMinimal()
+        public IEnumerable<string> GetRTEOptionsListMinimal()
         {
             return _rteOptionsListMinimal;
         }
@@ -38,7 +38,7 @@ namespace Abschlussprojekt2021.Resources
         /// Provides the RTE options. The scope is maximum in the context of the project.
         /// </summary>
         /// <returns>Returns a list of options for the Syncfusion UI component RTE.</returns>
-        public IEnumerable<string> RTEOptionsListMaximal()
+        public IEnumerable<string> GetRTEOptionsListMaximal()
         {
             return _rteOptionsListMaximal;
         }
