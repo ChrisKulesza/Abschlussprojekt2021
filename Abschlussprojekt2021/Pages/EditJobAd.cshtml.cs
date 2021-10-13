@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Abschlussprojekt2021.Pages
@@ -12,24 +11,25 @@ namespace Abschlussprojekt2021.Pages
     [BindProperties]
     public class EditJobAdModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IRepository<JobAd> _repository;
+
         public JobAd JobAd { get; set; }
         public InputModel Input { get; set; }
 
-        public EditJobAdModel(ApplicationDbContext context)
+        public EditJobAdModel(IRepository<JobAd> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        public void OnGet(int id)
+        public async Task OnGetAsync(int id)
         {
-            JobAd = _context.JobAds.Where(j => j.Id == id).FirstOrDefault();
+            JobAd = await _repository.GetByIdAsync(id);
         }
 
-        public async Task<RedirectResult> OnPostAsync(int id)
+        // named page handler
+        // defined in the view via tag helper asp-page-handler="edit"
+        public async Task<RedirectResult> OnPostEditAsync()
         {
-            JobAd = _context.JobAds.Where(j => j.Id == id).FirstOrDefault();
-
             if (ModelState.IsValid)
             {
                 JobAd.Name = Input.Name;
@@ -38,9 +38,8 @@ namespace Abschlussprojekt2021.Pages
                 JobAd.MainSkills = Input.MainSkills;
                 JobAd.Region = Input.Region;
                 JobAd.StartDate = Input.StartDate;
-            
-                _context.JobAds.Update(JobAd);
-                await _context.SaveChangesAsync();
+
+                await _repository.UpdateAsync(JobAd);
             }
 
             return Redirect("/Index");

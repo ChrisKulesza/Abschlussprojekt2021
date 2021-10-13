@@ -1,5 +1,6 @@
 using Abschlussprojekt2021.Areas.Identity.Data;
 using Abschlussprojekt2021.Data;
+using Abschlussprojekt2021.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +31,11 @@ namespace Abschlussprojekt2021
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connection));
+
+            // DI Synfuction RTE UI component service
+            services.AddScoped<SyncfusionOptionsService>();
+            // DI Repository Design Pattern
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

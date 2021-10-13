@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -11,7 +11,7 @@
     // RBAC here
     if (User.IsInRole(Constants.RoleAdmin) || User.IsInRole(Constants.RoleEditor))
     {
-        toolbarItems.Add(new { text = "Neue Stelle", id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
+        toolbarItems.Add(new { text = "Neue Stelle anlegen", id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
         commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deleteButton" } });
         commands.Add(new { type = "Edit", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editButton" } });
         commands.Add(new { type = "Copy", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat", id = "copyButton" } });
@@ -22,12 +22,15 @@
 
 <div>
     <ejs-grid id="DataGrid"
+              load="onload"
               dataSource="@Model.JobAds"
               allowPaging="true"
               toolbar="toolbarItems"
               toolbarClick="toolbarClick"
               commandClick="commandClick"
               locale="de-DE">
+        @*<e-data-manager url="Index/OnGetAsync/" delete-url="Index/Delete?handler=delete" adaptor="UrlAdaptor"></e-data-manager>
+        <e-grid-editsettings allowDeleting="true"></e-grid-editsettings>*@
         <e-grid-filtersettings type="Menu"></e-grid-filtersettings>
 
         <e-grid-columns>
@@ -58,6 +61,10 @@
     </ej-dialog>*@
 
 <script>
+    function onLoad(args) {
+        this.dataSource.dataSource.headers = [{ 'XSRF-TOKEN': $("input:hidden[name='__RequestVerificationToken']").val() }];
+    }
+
     //JQuery function to switch to the "create a new job ad page"
     function toolbarClick(args) {
         if (args.item.id === 'addJobAd') {
@@ -75,23 +82,6 @@
         else if (args.commandColumn.type == 'Edit') {
             window.location.href = 'EditJobAd?id=' + args.rowData.Id;
         }
-        @*else if (args.commandColumn.type == 'Delete') {
-
-        }*@
-
-        // OLD Code | Karriere Webseite
-        //if (args.target.title === 'Edit') {
-        //    window.location.href = '/EditJobAd/' + args.rowData.Id;
-        //}
-        //else if (args.target.title === 'Details') {
-        //    window.location.href = '/JobDetails?id=' + args.rowData.Id;
-        //}
-        //else if (args.target.title === 'Delete') {
-        //        $("#seconddialog").ejDialog("open");
-        //    //ej.popups.DialogUtility.confirm('Do you really want to delete the chosen entry?');
-        //    //window.location.href = '/JobDetails/' + args.rowData.Id;
-        //}
-
     }
 </script>
 
