@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Abschlussprojekt2021.Data
@@ -14,30 +15,53 @@ namespace Abschlussprojekt2021.Data
             _context = context;
         }
 
-        public async Task DeleteAsync(int id)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public void Delete(int id)
         {
-            var entity = await _context.Set<T>().FindAsync(id);
-
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            var entity = _context.Set<T>().Find(id);
 
             _context.Set<T>().Remove(entity);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
+        /// <summary>
+        /// Retrieves all records of the generic data type from the database.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>A set for the given entity type.</returns>
+        public IEnumerable<T> GetAllSynfusion()
+        {
+            return _context.Set<T>().ToList();
+        }
+
+        /// <summary>
+        /// Retrieves a specific record of the generic data type from the database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<T> GetByIdAsync(int id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task InsertAsync(T entity)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public void Insert(T entity)
         {
             if (entity == null)
             {
@@ -45,9 +69,14 @@ namespace Abschlussprojekt2021.Data
             }
 
             _context.Add(entity);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public async Task UpdateAsync(T entity)
         {
             if (entity == null)

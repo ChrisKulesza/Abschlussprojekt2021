@@ -12,7 +12,6 @@ namespace Abschlussprojekt2021.Pages
     public class EditJobAdModel : PageModel
     {
         private readonly IRepository<JobAd> _repository;
-
         public JobAd JobAd { get; set; }
         public InputModel Input { get; set; }
 
@@ -26,10 +25,10 @@ namespace Abschlussprojekt2021.Pages
             JobAd = await _repository.GetByIdAsync(id);
         }
 
-        // named page handler
-        // defined in the view via tag helper asp-page-handler="edit"
-        public async Task<RedirectResult> OnPostEditAsync()
+        public async Task<RedirectResult> OnPostAsync(int id)
         {
+            JobAd = await _repository.GetByIdAsync(id);
+
             if (ModelState.IsValid)
             {
                 JobAd.Name = Input.Name;

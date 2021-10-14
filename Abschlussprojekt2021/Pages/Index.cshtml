@@ -1,5 +1,7 @@
-﻿@page "{handler?}"
+﻿@page "{Index?}/{handler?}"
 @model IndexModel
+@Html.AntiForgeryToken()
+
 @{
     ViewData["Title"] = "Home page";
 
@@ -18,22 +20,21 @@
     }
     commands.Add(new { type = "Details", buttonOption = new { iconCss = Constants.IconDetails, cssClass = "e-flat", id = "DetailsButton" } });
 }
-@Html.AntiForgeryToken()
 
 <div>
     <ejs-grid id="DataGrid"
-              load="onload"
-              dataSource="@Model.JobAds"
+              load="onLoad"
               allowPaging="true"
               toolbar="toolbarItems"
               toolbarClick="toolbarClick"
               commandClick="commandClick"
               locale="de-DE">
-        @*<e-data-manager url="Index/OnGetAsync/" delete-url="Index/Delete?handler=delete" adaptor="UrlAdaptor"></e-data-manager>
-        <e-grid-editsettings allowDeleting="true"></e-grid-editsettings>*@
+        <e-data-manager url="/Index?handler=DataSource" adaptor="UrlAdaptor"></e-data-manager>
+        <e-grid-pagesettings pageSize="7"></e-grid-pagesettings>
         <e-grid-filtersettings type="Menu"></e-grid-filtersettings>
 
         <e-grid-columns>
+            <e-grid-column field="Id" headerText="Job Id" isIdentity="true" textAlign="Left" width="auto" visible="false"></e-grid-column>
             <e-grid-column field="Name" headerText="Job Ad" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
             <e-grid-column field="Position" headerText="Position" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
             <e-grid-column field="Description" headerText="Description" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width: 1100px)" -->
@@ -47,18 +48,11 @@
 
 <!-- Test button -->
 <div>
-    <ejs-button isPrimary=true id="but" onclick="clickAjax()"><e-content-template>Open Reusable Dialog</e-content-template></ejs-button>
+    <ejs-button isPrimary=true id="but" onclick="modalWindow()"><e-content-template>Open Reusable Dialog</e-content-template></ejs-button>
 </div>
 
 <!-- Modal window - showing here-->
 <div id="PartialView"></div>
-
-@*<ej-dialog id="seconddialog" title="Warning" width="400" height="300" show-on-init="false">
-        <e-dialog-position x-value="300" y-value="20" />
-        <e-content-template>
-            <p>This is a nested dialog</p>
-        </e-content-template>
-    </ej-dialog>*@
 
 <script>
     function onLoad(args) {
@@ -73,6 +67,7 @@
     }
 
     function commandClick(args) {
+        //console.log(args);
         // Get DataGrid Element
         var grid = document.getElementById('DataGrid').ej2_instances[0];
         // Case distinction - which commandIcon was clicked
@@ -80,22 +75,17 @@
             window.location.href = 'JobDetails?id=' + args.rowData.Id;
         }
         else if (args.commandColumn.type == 'Edit') {
-            window.location.href = 'EditJobAd?id=' + args.rowData.Id;
+            window.location.href = 'EditJobAd/' + args.rowData.Id;
         }
-    }
-</script>
-
-<!-- Modal window- Partial View -->
-<script>
-    function clickAjax() {
-        var ajax = new ej.base.Ajax('/Shared/modalview', 'GET', true);
-        ajax.send().then(function (result) {
-            var partialElem = document.getElementById('PartialView');
-            partialElem.innerHTML = result;
-            var scriptElm = partialElem.querySelectorAll('script')
-            for (var i = 0; i < scriptElm.length; i++) {
-                eval(scriptElm[i].innerHTML);
-            }
-        });
+        else if (args.commandColumn.type == 'Delete') {
+            // Sending request to post handler named OnPostDelete in the code behind
+            // function located in wwwroot.js
+            SyncfusionSendToPostHandler(grid, args, "Delete");
+        }
+        else if (args.commandColumn.type == 'Copy') {
+            // Sending request to post handler named OnPostDuplicate in the code behind
+            // function located in wwwroot.js
+            SyncfusionSendToPostHandler(grid, args, "Duplicate");
+        }
     }
 </script>

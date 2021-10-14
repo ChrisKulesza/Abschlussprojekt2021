@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 
 namespace Abschlussprojekt2021.Pages
 {
@@ -21,7 +20,7 @@ namespace Abschlussprojekt2021.Pages
         public InputModel Input { get; set; }
 
 
-        public async Task<RedirectResult> OnPostInsertAsync()
+        public RedirectResult OnPostInsert()
         {
             JobAd jobAd = new()
             {
@@ -34,7 +33,7 @@ namespace Abschlussprojekt2021.Pages
                 Timeframe = Input.Timeframe
             };
 
-            await _repository.InsertAsync(jobAd);
+            _repository.Insert(jobAd);
 
             return Redirect("index");
         }

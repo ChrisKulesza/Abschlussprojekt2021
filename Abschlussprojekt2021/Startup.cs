@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
 
@@ -36,6 +37,17 @@ namespace Abschlussprojekt2021
             services.AddScoped<SyncfusionOptionsService>();
             // DI Repository Design Pattern
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+
+
+            // --------------------------------------------------------------------------------------
+            // NewtonsoftJson for Synfusion CRUD - Process
+            services.AddMvc().AddNewtonsoftJson(options => {
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
+            // Synfusion Area End
+            // --------------------------------------------------------------------------------------
+
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

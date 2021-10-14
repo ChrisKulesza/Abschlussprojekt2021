@@ -153,9 +153,27 @@ body {
 }
 /* -------------------------------------------------- */
 
+/* Change mouse cursor when hovering over Syncfusion Icons (Commands in data grid)
+-------------------------------------------------- */
+.e-unboundcelldiv{
+    cursor: pointer;
+}
+/* StellenId on JobAdDetails page
+-------------------------------------------------- */
+.stellenId{
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    font-weight: 100;
+    margin-left: 10px;
+}
+
+.e-lib.e-btn.e-control.e-flat.e-icon-btn span {
+    color: var(--companyColorGrayOne);
+}
+
 /* Syncfusion icon - change color by hovering to companyPurple */
-.e-lib.e-btn.e-control.e-flat.e-icon-btn:hover {
-    transition: all 0.5s ease;
+.e-lib.e-btn.e-control.e-flat.e-icon-btn:hover span {
+    transition: all 0.25s ease;
     color: var(--companyColorPurple);
 }
 /* -------------------------------------------------- */
