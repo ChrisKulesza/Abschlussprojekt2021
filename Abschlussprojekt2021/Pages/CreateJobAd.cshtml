@@ -1,5 +1,7 @@
 ﻿@page
 @model CreateJobAdModel
+@inject SyncfusionOptionsService SyncfusionOptions
+
 @{
     ViewData["Title"] = "Create Job Ad";
 }
@@ -9,25 +11,47 @@
         <form method="post" asp-page-handler="insert">
             <div class="form-group col-md-4">
                 <label asp-for="Input.Name"></label>
-                <input asp-for="Input.Name" autocomplete="off" class="form-control" />
+                <input asp-for="Input.Name" autocomplete="off" class="form-control" placeholder="Vorname Nachname" />
                 <span class="text-danger" asp-validation-for="Input.Name"></span>
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.Position"></label>
-                <input asp-for="Input.Position" autocomplete="off" class="form-control" />
+                <input asp-for="Input.Position" autocomplete="off" class="form-control" placeholder="Titel der ausgeschriebenen Position" />
                 <span class="text-danger" asp-validation-for="Input.Position"></span>
             </div>
-            <div class="form-group col-md-4">
+            @*<div class="form-group col-md-4">
+        <label asp-for="Input.Description"></label>
+        <input asp-for="Input.Description" autocomplete="off" class="form-control" />
+        </div>*@
+            <div class="form-group col-md-8">
                 <label asp-for="Input.Description"></label>
-                <input asp-for="Input.Description" autocomplete="off" class="form-control" />
+                <!-- RTE Component -->
+                <ejs-richtexteditor id="rteCreate"
+                                    editorMode="HTML"
+                                    enableTabKey="true"
+                                    ejs-for="Input.Description"
+                                    placeholder="Stellenbeschreibung bitte hier eingeben."
+                                    showCharCount="true"
+                                    maxLength="2000"
+                                    beforeSanitizeHtml="beforeSanitizeHtml"
+                                    enableResize="true">
+                    <!-- Toolbar setting - The lists with the RTE options are no longer in the code behind, but can now be injected directly into the view. -->
+                    <e-richtexteditor-toolbarsettings items=@SyncfusionOptions.GetRTEOptionsListMinimal();
+                                                      enable="true">
+                    </e-richtexteditor-toolbarsettings>
+                    <e-content-template>
+                        
+                    </e-content-template>
+                </ejs-richtexteditor>
+                <!-- RTE Component -->
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.MainSkills"></label>
-                <input asp-for="Input.MainSkills" autocomplete="off" class="form-control" />
+                <input asp-for="Input.MainSkills" autocomplete="off" class="form-control" placeholder="Fähigkeiten des Bewerbers" />
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.Region"></label>
-                <input asp-for="Input.Region" autocomplete="off" class="form-control" />
+                <input asp-for="Input.Region" autocomplete="off" class="form-control" placeholder="Region" />
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.StartDate"></label>
@@ -47,3 +71,14 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<style>
+/* Syncfusion RTE - Min and Max Resize Value */
+.e-richtexteditor {
+    min-width: 500px;
+    max-width: 800px;
+    min-height: 200px;
+    max-height: 350px;
+}
+/* -------------------------------------------------- */
+</style>

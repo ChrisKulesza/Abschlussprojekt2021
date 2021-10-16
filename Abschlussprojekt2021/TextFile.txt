@@ -1,0 +1,2 @@
+﻿https://ej2.syncfusion.com/aspnetcore/Dialog/Modal#/bootstrap5
+https://blazor.syncfusion.com/documentation/dialog/getting-started

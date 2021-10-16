@@ -1,5 +1,7 @@
 ﻿@page "{id}"
 @model EditJobAdModel
+@inject SyncfusionOptionsService SyncfusionOptions
+
 @{
     ViewData["Title"] = "Edit Job";
 }
@@ -19,10 +21,31 @@
                 <input asp-for="Input.Position" autocomplete="off" class="form-control" value="@Model.JobAd.Position" />
                 <span class="text-danger" asp-validation-for="Input.Position"></span>
             </div>
-            <div class="form-group col-md-4">
+            @*<div class="form-group col-md-4">
+                    <label asp-for="Input.Description"></label>
+                    <input asp-for="Input.Description" autocomplete="off" class="form-control" value="@Model.JobAd.Description" />
+                    <span class="text-danger" asp-validation-for="Input.Description"></span>
+                </div>*@
+            <div class="form-group col-md-8">
                 <label asp-for="Input.Description"></label>
-                <input asp-for="Input.Description" autocomplete="off" class="form-control" value="@Model.JobAd.Description" />
-                <span class="text-danger" asp-validation-for="Input.Description"></span>
+                <!-- RTE Component -->
+                <ejs-richtexteditor id="rteEdit"
+                                    editorMode="HTML"
+                                    enableTabKey="true"
+                                    ejs-for="Input.Description"
+                                    showCharCount="true"
+                                    maxLength="2000"
+                                    beforeSanitizeHtml="beforeSanitizeHtml"
+                                    enableResize="true">
+                    <!-- Toolbar setting - The lists with the RTE options are no longer in the code behind, but can now be injected directly into the view. -->
+                    <e-richtexteditor-toolbarsettings items=@SyncfusionOptions.GetRTEOptionsListMinimal();
+                                                      enable="true">
+                    </e-richtexteditor-toolbarsettings>
+                    <e-content-template>
+                        @Model.JobAd.Description
+                    </e-content-template>
+                </ejs-richtexteditor>
+                <!-- RTE Component -->
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.MainSkills"></label>
@@ -52,3 +75,14 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<style>
+/* Syncfusion RTE - Min and Max Resize Value */
+.e-richtexteditor {
+    min-width: 500px;
+    max-width: 800px;
+    min-height: 200px;
+    max-height: 350px;
+}
+/* -------------------------------------------------- */
+</style>

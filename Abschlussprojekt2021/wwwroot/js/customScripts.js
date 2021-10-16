@@ -6,11 +6,11 @@
  * @param {any} args            object passed to the function
  * @param {string} posthandler  Posthandler method in the code behind, e.g. for OnPostDelete -> Delete
  */
-function SyncfusionSendToPostHandler(grid, args, posthandler) {
+function syncfusionSendToPostHandler(grid, args, postHandler) {
     // here we are making an ajax call to server  
     var ajax = new ej.base.Ajax({
         // trigger the necessary PostHandler in the code behind
-        url: `/Index?handler=${posthandler}`,
+        url: `/Index?handler=${postHandler}`,
         type: "POST",
         contentType: "application/json",
         dataType: "json",
@@ -32,9 +32,14 @@ function SyncfusionSendToPostHandler(grid, args, posthandler) {
 }
 
 /* Modal window - Partial View */
-/* Calls Modal Window partial View located in Pages.Shared.ModalView */
-function modalWindow() {
-    var ajax = new ej.base.Ajax('/Shared/modalview', 'GET', true);
+/**
+ * 
+ * Description.         Calls Modal Window partial View located in Pages.Shared.ModalView
+ * 
+ * */
+//function modalWindowDelete(grid, args, postHandler) {
+function modalWindowDelete() {
+    var ajax = new ej.base.Ajax('/Shared/modalviewdelete', 'GET', true);
     ajax.send().then(function (result) {
         var partialElem = document.getElementById('PartialView');
     partialElem.innerHTML = result;
@@ -43,4 +48,35 @@ function modalWindow() {
         eval(scriptElm[i].innerHTML);
         }
     });
+}
+
+/**
+ * 
+ * Description.         Gets the Type of the clicked command icon and return the value as a string.
+ * 
+ * @param {any} args
+ */
+function getCommandColumnType(args) {
+    let type = args.commandColumn.type;
+    return type;
+}
+
+/**
+ * Custom cross-site scripting
+ * 
+ * Description.              Preventing cross-site scripting (XSS)
+ * 
+ * @param {any} args
+ */
+function beforeSanitizeHtml(args) {
+    args.helper = (value) => {
+        args.cancel = true;
+        var temp = document.createElement('div');
+        temp.innerHTML = value;
+        var scriptTag = temp.querySelector('script');
+        if (scriptTag) {
+            ej.base.detach(scriptTag);
+        }
+        return temp.innerHTML;
+    }
 }

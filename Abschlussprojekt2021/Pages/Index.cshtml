@@ -15,10 +15,10 @@
     {
         toolbarItems.Add(new { text = "Neue Stelle anlegen", id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
         commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deleteButton" } });
-        commands.Add(new { type = "Edit", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editButton" } });
-        commands.Add(new { type = "Copy", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat", id = "copyButton" } });
+        commands.Add(new { type = "EditJobAd", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editButton" } });
+        commands.Add(new { type = "Duplicate", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat", id = "copyButton" } });
     }
-    commands.Add(new { type = "Details", buttonOption = new { iconCss = Constants.IconDetails, cssClass = "e-flat", id = "DetailsButton" } });
+    commands.Add(new { type = "JobDetails", buttonOption = new { iconCss = Constants.IconDetails, cssClass = "e-flat", id = "DetailsButton" } });
 }
 
 <div>
@@ -30,6 +30,7 @@
               commandClick="commandClick"
               locale="de-DE">
         <e-data-manager url="/Index?handler=DataSource" adaptor="UrlAdaptor"></e-data-manager>
+        @*<e-grid-editsettings showDeleteConfirmDialog="true" mode="Dialog" template="#dialog"></e-grid-editsettings>*@
         <e-grid-pagesettings pageSize="7"></e-grid-pagesettings>
         <e-grid-filtersettings type="Menu"></e-grid-filtersettings>
 
@@ -47,45 +48,54 @@
 </div>
 
 <!-- Test button -->
-<div>
-    <ejs-button isPrimary=true id="but" onclick="modalWindow()"><e-content-template>Open Reusable Dialog</e-content-template></ejs-button>
-</div>
+@*<div>
+        <ejs-button isPrimary=true id="but" onclick="modalWindow()"><e-content-template>Open Reusable Dialog</e-content-template></ejs-button>
+    </div>*@
 
 <!-- Modal window - showing here-->
 <div id="PartialView"></div>
 
+
+<!-- Javascript -->
 <script>
     function onLoad(args) {
         this.dataSource.dataSource.headers = [{ 'XSRF-TOKEN': $("input:hidden[name='__RequestVerificationToken']").val() }];
     }
 
     //JQuery function to switch to the "create a new job ad page"
+    // toolbarClick
     function toolbarClick(args) {
         if (args.item.id === 'addJobAd') {
             window.location.href = 'CreateJobAd';
         }
     }
 
+    // commandClick
     function commandClick(args) {
-        //console.log(args);
-        // Get DataGrid Element
+        // selecting DataGrid
         var grid = document.getElementById('DataGrid').ej2_instances[0];
+        // get commandColumn type
+        let commandType = getCommandColumnType(args);
+
         // Case distinction - which commandIcon was clicked
-        if (args.commandColumn.type == 'Details') {
-            window.location.href = 'JobDetails?id=' + args.rowData.Id;
+        if (commandType == 'JobDetails') {
+            window.location.href = `${commandType}?id=` + args.rowData.Id;
         }
-        else if (args.commandColumn.type == 'Edit') {
-            window.location.href = 'EditJobAd/' + args.rowData.Id;
+        else if (commandType == 'EditJobAd') {
+            window.location.href = `${commandType}/` + args.rowData.Id;
         }
-        else if (args.commandColumn.type == 'Delete') {
+        else if (commandType == 'Delete') {
             // Sending request to post handler named OnPostDelete in the code behind
+            // after successfully handle OnPost handler the page will be refreshed -> DataGrid
             // function located in wwwroot.js
-            SyncfusionSendToPostHandler(grid, args, "Delete");
+            syncfusionSendToPostHandler(grid, args, commandType);
         }
-        else if (args.commandColumn.type == 'Copy') {
+        else if (commandType == 'Duplicate') {
             // Sending request to post handler named OnPostDuplicate in the code behind
+            // after successfully handle OnPost handler the page will be refreshed -> DataGrid
             // function located in wwwroot.js
-            SyncfusionSendToPostHandler(grid, args, "Duplicate");
+            //modalWindowDelete();
+            syncfusionSendToPostHandler(grid, args, commandType);
         }
     }
 </script>
