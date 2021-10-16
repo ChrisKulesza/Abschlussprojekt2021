@@ -5,8 +5,20 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    string userInRole = "";
+
+    if (User.IsInRole(Constants.RoleAdmin))
+    {
+        userInRole = "Admin";
+    }
+    else if (User.IsInRole(Constants.RoleEditor))
+    {
+        userInRole = "Editor";
+    }
+
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        @*<a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hallo @User.Identity.Name! (@userInRole)</a>*@
+        <span  class="nav-link text-dark">Hallo @User.Identity.Name! (@userInRole)</span>
     </li>
     <li class="nav-item">
         <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >

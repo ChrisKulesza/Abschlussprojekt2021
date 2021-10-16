@@ -35,12 +35,14 @@
                                     maxLength="2000"
                                     beforeSanitizeHtml="beforeSanitizeHtml"
                                     enableResize="true">
+                    <!-- Cleanup copied content from the web -->
+                    <e-richtexteditor-pastecleanupsettings plainText="true" />
                     <!-- Toolbar setting - The lists with the RTE options are no longer in the code behind, but can now be injected directly into the view. -->
                     <e-richtexteditor-toolbarsettings items=@SyncfusionOptions.GetRTEOptionsListMinimal();
                                                       enable="true">
                     </e-richtexteditor-toolbarsettings>
                     <e-content-template>
-                        
+
                     </e-content-template>
                 </ejs-richtexteditor>
                 <!-- RTE Component -->
