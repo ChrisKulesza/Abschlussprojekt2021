@@ -32,6 +32,15 @@ namespace Abschlussprojekt2021.Data
         /// Retrieves all records of the generic data type from the database.
         /// </summary>
         /// <returns></returns>
+        public List<T> GetAll()
+        {
+            return _context.Set<T>().ToList();
+        }
+
+        /// <summary>
+        /// Retrieves all records of the generic data type from the database.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
@@ -44,6 +53,11 @@ namespace Abschlussprojekt2021.Data
         public IEnumerable<T> GetAllSynfusion()
         {
             return _context.Set<T>().ToList();
+        }
+
+        public T GetByID(int id)
+        {
+            return _context.Set<T>().Find(id);
         }
 
         /// <summary>

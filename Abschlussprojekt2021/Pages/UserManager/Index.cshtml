@@ -1,4 +1,101 @@
-﻿@page "{Index?}"
+﻿@page
+@using Microsoft.AspNetCore.Http
+
 @model Abschlussprojekt2021.Pages.UserManager.IndexModel
 @{
+    ViewData["Title"] = "Benutzerverwaltung";
+
+    List<object> toolbarItems = new List<object>();
+    List<object> commands = new List<object>();
+
+    // Toolbar Item
+    toolbarItems.Add("Search");
+    toolbarItems.Add(new { text = "Neuen Nutzer anlegen", id = "addUser", align = "Left", prefixIcon = Constants.IconPlus });
+    // Commands
+    commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deletebutton" } });
+    commands.Add(new { type = "Edit", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editbutton" } });
+
+    var userEmail = HttpContext.User.Identity.Name;
 }
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="col-md-12 px-0">
+    <ejs-grid id="DataGrid"
+              dataSource="@Model.Users"
+              allowPaging="true"
+              toolbar="toolbarItems"
+              toolbarClick="toolbarClick"
+              commandClick="commandClick"
+              rowDataBound="rowDataBound"
+              locale="de-DE">
+              @*rowDataBound="rowDataBound"*@
+              @*load="onLoad"*@
+        @*<e-data-manager url="/UserManager/Index?handler=DataSource" adaptor="UrlAdaptor"></e-data-manager>*@
+        @*<e-grid-editsettings showDeleteConfirmDialog="true" mode="Dialog" template="#dialog"></e-grid-editsettings>*@
+        <e-grid-pagesettings pageSize="7"></e-grid-pagesettings>
+        <e-grid-filtersettings type="Menu"></e-grid-filtersettings>
+
+        <e-grid-columns>
+            <e-grid-column field="Id" headerText="Account Id" isIdentity="true" textAlign="Left" width="auto" visible="false"></e-grid-column>
+            <e-grid-column field="FirstName" headerText="First name" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="LastName" headerText="Last Name" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Email" headerText="Email" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Role" headerText="Role" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="" width="190px" commands="commands"></e-grid-column>
+        </e-grid-columns>
+    </ejs-grid>
+</div>
+
+<!-- Javascript -->
+<script>
+    //function onLoad(args) {
+    //    this.dataSource.dataSource.headers = [{ 'XSRF-TOKEN': $("input:hidden[name='__RequestVerificationToken']").val() }];
+    //}
+
+    //JQuery function to switch to the "create a new job ad page"
+    // toolbarClick
+    function toolbarClick(args) {
+        if (args.item.id === 'addUser') {
+            window.location.href = 'UserManager/AddUser';
+        }
+    }
+
+    // commandClick
+    function commandClick(args) {
+        // selecting DataGrid
+        var grid = document.getElementById('DataGrid').ej2_instances[0];
+        // get commandColumn type
+        let commandType = getCommandColumnType(args);
+
+        // Case distinction - which commandIcon was clicked
+        if (commandType == 'JobDetails') {
+            window.location.href = `${commandType}?id=` + args.rowData.Id;
+        }
+        else if (commandType == 'EditJobAd') {
+            window.location.href = `${commandType}/` + args.rowData.Id;
+        }
+        else if (commandType == 'Delete') {
+            // Sending request to post handler named OnPostDelete in the code behind
+            // after successfully handle OnPost handler the page will be refreshed -> DataGrid
+            // function located in wwwroot.js
+            syncfusionSendToPostHandler(grid, args, commandType);
+        }
+        else if (commandType == 'Duplicate') {
+            // Sending request to post handler named OnPostDuplicate in the code behind
+            // after successfully handle OnPost handler the page will be refreshed -> DataGrid
+            // function located in wwwroot.js
+            //modalWindowDelete();
+            syncfusionSendToPostHandler(grid, args, commandType);
+        }
+    }
+
+    // Hide command button based on row data
+    function rowDataBound(args) {
+        if (args.data.Email == '@userEmail') {
+            args.row.querySelector('.e-deletebutton').style.display = 'none';
+        }
+        //console.log(args.data.Email);
+        //console.log(`Test-Ausgabe: {@userEmail}`);
+    }
+</script>

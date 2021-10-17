@@ -8,8 +8,10 @@ namespace Abschlussprojekt2021.Data
     {
         void Insert(T entity);
         Task<List<T>> GetAllAsync();
+        List<T> GetAll();
         IEnumerable<T> GetAllSynfusion();
         Task<T> GetByIdAsync(int id);
+        T GetByID(int id);
         Task UpdateAsync(T entity);
         void Delete(int id);
     }

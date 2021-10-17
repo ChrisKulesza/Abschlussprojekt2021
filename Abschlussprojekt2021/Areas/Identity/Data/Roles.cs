@@ -14,7 +14,7 @@ namespace Abschlussprojekt2021.Areas.Identity.Data
         /// </summary>
         /// <param name="serviceProvider"></param>
         /// <returns></returns>
-        public static async Task createRoles(IServiceProvider serviceProvider)
+        public static async Task CreateRoles(IServiceProvider serviceProvider)
         {
             try
             {

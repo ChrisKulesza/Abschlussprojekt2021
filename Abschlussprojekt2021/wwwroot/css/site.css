@@ -7,6 +7,10 @@ for details on configuring this project to bundle and minify static web assets. 
     --companyColorGrayOne: #595959;
     --companyColorGrayTwo: #737373;
     --companyColorGrayThree: #888888;
+
+    /* Numbers animation */
+    --numberOne: 8px;
+    --numberTwo: 2px;
 }
 /* -------------------------------------------------- */
 
@@ -85,11 +89,11 @@ body {
     background-color: #753BBD;
 }*/
 
-.e-link, .e-numericitem, .e-spacing, .e-currentitem, .e-active {
+/*.e-link, .e-numericitem, .e-spacing, .e-currentitem, .e-active {
     background: var(--companyPurple) !important;
     color: #fff;
     opacity: 1;
-}
+}*/
 
 /* Logout Infotext */
 .alert-custom {
@@ -172,8 +176,78 @@ body {
 }
 
 /* Syncfusion icon - change color by hovering to companyPurple */
-.e-lib.e-btn.e-control.e-flat.e-icon-btn:hover span {
+/*.e-lib.e-btn.e-control.e-flat.e-icon-btn:hover span {
     transition: all 0.25s ease;
     color: var(--companyColorPurple);
+}*/
+/* -------------------------------------------------- */
+
+/* Syncfusion - Data grid - Pager numeric area
+-------------------------------------------------- */
+
+/*https://help.syncfusion.com/aspnet-core/pager/customization*/
+
+.e-numericcontainer .e-currentitem {
+    background-color: var(--companyColorPurple);
+    /*opacity: 0.5;*/
+}
+
+.e-numericcontainer .e-currentitem:hover {
+    background-color: var(--companyColorPurple);
+    /*opacity: 0.5;*/
+}
+
+.e-numericcontainer .e-link.e-numericitem.e-spacing.e-pager-default:hover {
+    background-color: var(--companyColorPurple);
+    /*opacity: 0.5;*/
+    color: var(--companyColorPurple);
+    font-weight: 900;
+}
+/* -------------------------------------------------- */
+
+/* Testgelände
+-------------------------------------------------- */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    40% {
+        -webkit-transform: translateY(var(--numberOne));
+        -ms-transform: translateY(var(--numberOne));
+        transform: translateY(var(--numberOne))
+    }
+
+    60% {
+        -webkit-transform: translateY(var(--numberTwo));
+        -ms-transform: translateY(var(--numberTwo));
+        transform: translateY(var(--numberTwo))
+    }
+}
+
+/*[data-uid^="gridcommand"]*/
+.e-lib.e-btn.e-control.e-flat.e-icon-btn {
+    /*top: 75%;
+    left: 75%;*/
+    animation-delay: 50ms;
+    -webkit-animation-delay: 50ms;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    /*color: white;*/
+}
+
+.e-lib.e-btn.e-control.e-flat.e-icon-btn:hover {
+    color: var(--companyColorPurple);
+    cursor: pointer;
+    animation-name: bounce;
+    -moz-animation-name: bounce;
 }
 /* -------------------------------------------------- */

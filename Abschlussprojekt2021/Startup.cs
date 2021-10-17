@@ -1,5 +1,6 @@
 using Abschlussprojekt2021.Areas.Identity.Data;
 using Abschlussprojekt2021.Data;
+using Abschlussprojekt2021.Models;
 using Abschlussprojekt2021.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,7 +53,7 @@ namespace Abschlussprojekt2021
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             // identity configuration
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 // password settings
                 options.Password.RequireDigit = false; // 0-9
@@ -125,7 +126,7 @@ namespace Abschlussprojekt2021
 
             // Create the roles if they don't already exist
             //Roles.createRoles(services).Wait();
-            Roles.createRoles(services).Wait();
+            Roles.CreateRoles(services).Wait();
         }
     }
 }

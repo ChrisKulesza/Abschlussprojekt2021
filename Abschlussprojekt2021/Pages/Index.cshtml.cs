@@ -20,6 +20,11 @@ namespace Abschlussprojekt2021.Pages
             _repository = repository;
         }
 
+        public void OnGet()
+        {
+            JobAds = _repository.GetAll();
+        }
+
         // OnPost handler - Syncfusion UrlAdaptor | GetDbData
         public JsonResult OnPostDataSource([FromBody] DataManagerRequest dm)
         {

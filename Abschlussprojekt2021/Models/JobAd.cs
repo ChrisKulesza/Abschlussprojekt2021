@@ -1,11 +1,12 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+
+#nullable disable
 
 namespace Abschlussprojekt2021.Models
 {
-    public class JobAd
+    public partial class JobAd
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
