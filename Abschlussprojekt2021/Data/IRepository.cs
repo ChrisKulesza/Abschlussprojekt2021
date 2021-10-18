@@ -11,7 +11,8 @@ namespace Abschlussprojekt2021.Data
         List<T> GetAll();
         IEnumerable<T> GetAllSynfusion();
         Task<T> GetByIdAsync(int id);
-        T GetByID(int id);
+        T GetById(int id);
+        T GetById(string id);
         Task UpdateAsync(T entity);
         void Delete(int id);
     }

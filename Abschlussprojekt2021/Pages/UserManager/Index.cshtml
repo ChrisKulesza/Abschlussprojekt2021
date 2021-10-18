@@ -22,6 +22,7 @@
 
 <div class="col-md-12 px-0">
     <ejs-grid id="DataGrid"
+              load="onLoad"
               dataSource="@Model.Users"
               allowPaging="true"
               toolbar="toolbarItems"
@@ -30,8 +31,7 @@
               rowDataBound="rowDataBound"
               locale="de-DE">
               @*rowDataBound="rowDataBound"*@
-              @*load="onLoad"*@
-        @*<e-data-manager url="/UserManager/Index?handler=DataSource" adaptor="UrlAdaptor"></e-data-manager>*@
+        <e-data-manager url="/UserManager/Index?handler=DataSource" adaptor="UrlAdaptor"></e-data-manager>
         @*<e-grid-editsettings showDeleteConfirmDialog="true" mode="Dialog" template="#dialog"></e-grid-editsettings>*@
         <e-grid-pagesettings pageSize="7"></e-grid-pagesettings>
         <e-grid-filtersettings type="Menu"></e-grid-filtersettings>
@@ -49,9 +49,9 @@
 
 <!-- Javascript -->
 <script>
-    //function onLoad(args) {
-    //    this.dataSource.dataSource.headers = [{ 'XSRF-TOKEN': $("input:hidden[name='__RequestVerificationToken']").val() }];
-    //}
+    function onLoad(args) {
+        this.dataSource.dataSource.headers = [{ 'XSRF-TOKEN': $("input:hidden[name='__RequestVerificationToken']").val() }];
+    }
 
     //JQuery function to switch to the "create a new job ad page"
     // toolbarClick
@@ -72,8 +72,8 @@
         if (commandType == 'JobDetails') {
             window.location.href = `${commandType}?id=` + args.rowData.Id;
         }
-        else if (commandType == 'EditJobAd') {
-            window.location.href = `${commandType}/` + args.rowData.Id;
+        else if (commandType == 'Edit') {
+            window.location.href = `UserManager/${commandType}User/` + args.rowData.Id;
         }
         else if (commandType == 'Delete') {
             // Sending request to post handler named OnPostDelete in the code behind

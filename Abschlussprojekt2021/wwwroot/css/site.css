@@ -8,9 +8,9 @@ for details on configuring this project to bundle and minify static web assets. 
     --companyColorGrayTwo: #737373;
     --companyColorGrayThree: #888888;
 
-    /* Numbers animation */
-    --numberOne: 8px;
-    --numberTwo: 2px;
+    /* Animation settings - Command icons Syncfusion */
+    --numberOne: -10px;
+    --numberTwo: -4px;
 }
 /* -------------------------------------------------- */
 

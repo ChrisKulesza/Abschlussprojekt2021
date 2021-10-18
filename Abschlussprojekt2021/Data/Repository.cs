@@ -55,7 +55,12 @@ namespace Abschlussprojekt2021.Data
             return _context.Set<T>().ToList();
         }
 
-        public T GetByID(int id)
+        public T GetById(int id)
+        {
+            return _context.Set<T>().Find(id);
+        }
+
+        public T GetById(string id)
         {
             return _context.Set<T>().Find(id);
         }

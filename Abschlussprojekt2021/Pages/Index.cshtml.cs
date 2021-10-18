@@ -13,16 +13,11 @@ namespace Abschlussprojekt2021.Pages
     public class IndexModel : PageModel
     {
         private readonly IRepository<JobAd> _repository;
-        public List<JobAd> JobAds { get; set; }
+        //public List<JobAd> JobAds { get; set; }
 
         public IndexModel(IRepository<JobAd> repository)
         {
             _repository = repository;
-        }
-
-        public void OnGet()
-        {
-            JobAds = _repository.GetAll();
         }
 
         // OnPost handler - Syncfusion UrlAdaptor | GetDbData
@@ -46,7 +41,7 @@ namespace Abschlussprojekt2021.Pages
         // OnPost handler - Syncfusion UrlAdaptor | Duplicate
         public void OnPostDuplicate([FromBody]CRUDModel<JobAd> value)
         {
-            int id = Convert.ToInt32(value.Value.Id);
+            //int id = Convert.ToInt32(value.Value.Id);
             JobAd job = new()
             {
                 Name = value.Value.Name,
