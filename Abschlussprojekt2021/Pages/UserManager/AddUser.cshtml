@@ -5,3 +5,34 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-12 px-0">
+        <form method="post" asp-page-handler="insert">
+            <div class="form-group col-md-4">
+                <label asp-for="Input.FirstName"></label>
+                <input asp-for="Input.FirstName" autocomplete="off" class="form-control" placeholder=@Constants.formFirstName />
+                <span class="text-danger" asp-validation-for="Input.FirstName"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Input.LastName"></label>
+                <input asp-for="Input.LastName" autocomplete="off" class="form-control" placeholder=@Constants.formLastName />
+                <span class="text-danger" asp-validation-for="Input.LastName"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" type="email" autocomplete="off" class="form-control" placeholder=@Constants.formEmail />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Input.Role"></label>
+                <input asp-for="Input.Email" autocomplete="off" class="form-control" placeholder=@Constants.formEmail />
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-secondary">@Constants.BtnSave</button>
+                <button class="btn btn-secondary">@Constants.BtnCancel</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -20,7 +20,7 @@ namespace Abschlussprojekt2021.Pages.UserManager
         private readonly IRepository<ApplicationUser> _repositoryApplicationUser;
         //private readonly IRepository<AspNetUserRole> _repositoryUserRole;
 
-        public List<ApplicationUser> Users { get; set; }
+        public IEnumerable<ApplicationUser> Users { get; set; }
         public List<IdentityRole> Roles { get; set; }
 
         public IndexModel(

@@ -1,5 +1,6 @@
 using Abschlussprojekt2021.Data;
 using Abschlussprojekt2021.Models;
+using Abschlussprojekt2021.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -42,6 +43,7 @@ namespace Abschlussprojekt2021.Pages
         {
             [Required]
             [DataType(DataType.Text)]
+            [Display(Name = Constants.formJobAdName)]
             //[StringLength(30, ErrorMessage = "Test", MinimumLength = 5)]
             public string Name { get; set; }
 
@@ -49,14 +51,16 @@ namespace Abschlussprojekt2021.Pages
             [DataType(DataType.Text)]
             public string Position { get; set; }
 
+            [Display(Name = Constants.formDescription)]
             public string Description { get; set; }
 
-            [Display(Name = "Main Skills")]
+            [Display(Name = Constants.formMainSkills)]
             public string MainSkills { get; set; }
             
             public string Region { get; set; }
 
             [DataType(DataType.Date)]
+            [Display(Name = Constants.formStartDate)]
             public DateTime StartDate { get; set; }
 
             [DataType(DataType.Date)]

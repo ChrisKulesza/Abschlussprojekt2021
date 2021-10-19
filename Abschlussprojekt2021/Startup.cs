@@ -39,7 +39,7 @@ namespace Abschlussprojekt2021
             // DI Repository Design Pattern
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
-
+            #region Snycfusion
             // --------------------------------------------------------------------------------------
             // NewtonsoftJson for Synfusion CRUD - Process
             services.AddMvc().AddNewtonsoftJson(options => {
@@ -48,10 +48,11 @@ namespace Abschlussprojekt2021
             services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
             // Synfusion Area End
             // --------------------------------------------------------------------------------------
-
+            #endregion
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            #region Identity
             // identity configuration
             services.AddDefaultIdentity<ApplicationUser>(options =>
             {
@@ -77,6 +78,7 @@ namespace Abschlussprojekt2021
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            #endregion
 
             services.AddRazorPages();
         }
@@ -100,6 +102,8 @@ namespace Abschlussprojekt2021
             }
 
             app.UseHttpsRedirection();
+
+            #region StaticFiles
             app.UseStaticFiles();       // wwwroot folder
 
             // static files for images - define own querystring in the browser
@@ -108,6 +112,7 @@ namespace Abschlussprojekt2021
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Media\Images")),
                 RequestPath = new PathString("/img")
             });
+            #endregion
 
             // Here is our middleware registration
             app.UseStatusCodePagesWithReExecute("/Error/{0}");

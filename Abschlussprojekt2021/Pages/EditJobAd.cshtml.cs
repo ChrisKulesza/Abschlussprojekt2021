@@ -1,5 +1,6 @@
 using Abschlussprojekt2021.Data;
 using Abschlussprojekt2021.Models;
+using Abschlussprojekt2021.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -60,7 +61,7 @@ namespace Abschlussprojekt2021.Pages
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Main Skills")]
+            [Display(Name = Constants.formMainSkills)]
             public string MainSkills { get; set; }
 
             [Required]
@@ -70,7 +71,7 @@ namespace Abschlussprojekt2021.Pages
             [Required]
             [DataType(DataType.Date)]
             [DisplayFormat(DataFormatString = "{0:dd.MMM.yyyy}", ApplyFormatInEditMode = true)]
-            [Display(Name = "Start date")]
+            [Display(Name = Constants.formStartDate)]
             public DateTime StartDate { get; set; }
         }
     }

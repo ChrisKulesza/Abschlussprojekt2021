@@ -10,7 +10,7 @@
 
     // Toolbar Item
     toolbarItems.Add("Search");
-    toolbarItems.Add(new { text = "Neuen Nutzer anlegen", id = "addUser", align = "Left", prefixIcon = Constants.IconPlus });
+    toolbarItems.Add(new { text = @Constants.syncUserNew, id = "addUser", align = "Left", prefixIcon = Constants.IconPlus });
     // Commands
     commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deletebutton" } });
     commands.Add(new { type = "Edit", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editbutton" } });
@@ -38,10 +38,10 @@
 
         <e-grid-columns>
             <e-grid-column field="Id" headerText="Account Id" isIdentity="true" textAlign="Left" width="auto" visible="false"></e-grid-column>
-            <e-grid-column field="FirstName" headerText="First name" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="LastName" headerText="Last Name" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="Email" headerText="Email" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="Role" headerText="Role" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="FirstName" headerText=@Constants.syncFirstName textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="LastName" headerText=@Constants.syncLastName textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Email" headerText=@Constants.syncEmail textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Role" headerText=@Constants.syncRole textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
             <e-grid-column field="" width="190px" commands="commands"></e-grid-column>
         </e-grid-columns>
     </ejs-grid>

@@ -13,7 +13,7 @@
     // RBAC here
     if (User.IsInRole(Constants.RoleAdmin) || User.IsInRole(Constants.RoleEditor))
     {
-        toolbarItems.Add(new { text = "Neue Stelle anlegen", id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
+        toolbarItems.Add(new { text = @Constants.syncJobAdNew, id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
         commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deleteButton" } });
         commands.Add(new { type = "EditJobAd", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editButton" } });
         commands.Add(new { type = "Duplicate", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat", id = "copyButton" } });
@@ -36,12 +36,12 @@
 
         <e-grid-columns>
             <e-grid-column field="Id" headerText="Job Id" isIdentity="true" textAlign="Left" width="auto" visible="false"></e-grid-column>
-            <e-grid-column field="Name" headerText="Job Ad" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="Position" headerText="Position" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
-            <e-grid-column field="Description" headerText="Description" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width: 1100px)" -->
-            <e-grid-column field="MainSkills" headerText="Main Skills" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width: 700px)" -->
-            <e-grid-column field="Region" headerText="Region" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width:700px)" -->
-            <e-grid-column field="StartDate" type="date" format="dd.MM.yyyy" headerText="Start Date" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="min-width:500px" -->
+            <e-grid-column field="Name" headerText=@Constants.syncJobAd textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Position" headerText=@Constants.syncPosition textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column>
+            <e-grid-column field="Description" headerText=@Constants.syncDescription textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width: 1100px)" -->
+            <e-grid-column field="MainSkills" headerText=@Constants.syncMainSkills textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width: 700px)" -->
+            <e-grid-column field="Region" headerText=@Constants.syncRegion textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="(min-width:700px)" -->
+            <e-grid-column field="StartDate" headerText=@Constants.syncStartDate type="date" format="dd.MM.yyyy" textAlign="Left" width="auto" clipMode="EllipsisWithTooltip"></e-grid-column> <!-- hideAtMedia="min-width:500px" -->
             <e-grid-column field="" width="190px" commands="commands"></e-grid-column>
         </e-grid-columns>
     </ejs-grid>

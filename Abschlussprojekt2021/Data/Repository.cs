@@ -32,7 +32,7 @@ namespace Abschlussprojekt2021.Data
         /// Retrieves all records of the generic data type from the database.
         /// </summary>
         /// <returns></returns>
-        public List<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }
@@ -71,6 +71,11 @@ namespace Abschlussprojekt2021.Data
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task<T> GetByIdAsync(int id)
+        {
+            return await _context.Set<T>().FindAsync(id);
+        }
+
+        public async Task<T> GetByIdAsync(string id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
