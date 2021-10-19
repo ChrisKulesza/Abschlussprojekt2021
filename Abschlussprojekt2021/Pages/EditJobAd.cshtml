@@ -12,12 +12,12 @@
     <div class="col-md-12 px-0">
         <form method="post">
             <div class="form-group col-md-4">
-                <label asp-for="@Model.JobAd.Name"></label>
+                <label asp-for="Input.Name"></label>
                 <input asp-for="Input.Name" autocomplete="off" class="form-control" value="@Model.JobAd.Name" />
                 <span class="text-danger" asp-validation-for="Input.Name"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="@Model.JobAd.Position"></label>
+                <label asp-for="Input.Position"></label>
                 <input asp-for="Input.Position" autocomplete="off" class="form-control" value="@Model.JobAd.Position" />
                 <span class="text-danger" asp-validation-for="Input.Position"></span>
             </div>
@@ -27,7 +27,7 @@
                     <span class="text-danger" asp-validation-for="Input.Description"></span>
                 </div>*@
             <div class="form-group col-md-8">
-                <label asp-for="@Model.JobAd.Description"></label>
+                <label asp-for="Input.Description"></label>
                 <!-- RTE Component -->
                 <ejs-richtexteditor id="rteEdit"
                                     editorMode="HTML"
@@ -50,17 +50,17 @@
                 <!-- RTE Component -->
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="@Model.JobAd.MainSkills"></label>
+                <label asp-for="Input.MainSkills"></label>
                 <input asp-for="Input.MainSkills" autocomplete="off" class="form-control" value="@Model.JobAd.MainSkills" />
                 <span class="text-danger" asp-validation-for="Input.MainSkills"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="@Model.JobAd..Region"></label>
+                <label asp-for="Input.Region"></label>
                 <input asp-for="Input.Region" autocomplete="off" class="form-control" value="@Model.JobAd.Region" />
                 <span class="text-danger" asp-validation-for="Input.Region"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="@Model.JobAd..StartDate"></label>
+                <label asp-for="Input.StartDate"></label>
                 <input id="dateInput" asp-for="Input.StartDate" class="form-control" value="@Model.JobAd.StartDate.ToString("yyyy-MM-dd")" />
                 <span class="text-danger" asp-validation-for="Input.StartDate"></span>
             </div>

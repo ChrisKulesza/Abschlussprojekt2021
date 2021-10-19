@@ -56,6 +56,7 @@
         public const string BtnSave = "Save";
         public const string BtnCancel = "Cancel";
         public const string BtnDelete = "Delete";
+        public const string BtnRegister = "Register";
 
         // Strings
         public const string TxtLogoutInfo = "Sie werden ausgeloggt und auf die Landingpage weitergeleitet.";

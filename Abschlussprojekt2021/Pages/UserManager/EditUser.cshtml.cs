@@ -35,6 +35,7 @@ namespace Abschlussprojekt2021.Pages.UserManager
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.Email = Input.Email;
+                user.Role = Input.Role;
             }
 
             _unitOfWork.ApplicationUser.Update(user);
@@ -56,6 +57,10 @@ namespace Abschlussprojekt2021.Pages.UserManager
             [Required]
             [Display(Name = Constants.formEmail)]
             public string Email { get; set; }
+
+            [Required]
+            [Display(Name = Constants.formRole)]
+            public string Role { get; set; }
         }
     }
 }

@@ -10,21 +10,29 @@
     <div class="col-md-12 px-0">
         <form method="post" asp-page-handler="insert">
             <div class="form-group col-md-4">
-                <label asp-for="Input.FirstName"></label>
+                <label asp-for="@Model.User.FirstName"></label>
                 <input asp-for="Input.FirstName" autocomplete="off" class="form-control" placeholder=@Constants.formFirstName />
                 <span class="text-danger" asp-validation-for="Input.FirstName"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="Input.LastName"></label>
+                <label asp-for="@Model.User.LastName"></label>
                 <input asp-for="Input.LastName" autocomplete="off" class="form-control" placeholder=@Constants.formLastName />
                 <span class="text-danger" asp-validation-for="Input.LastName"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="Input.Email"></label>
+                <label asp-for="@Model.User.Email"></label>
                 <input asp-for="Input.Email" type="email" autocomplete="off" class="form-control" placeholder=@Constants.formEmail />
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="Input.Role"></label>
+                <label asp-for="@Model.User.Role"></label>
+                <input asp-for="Input.Role" autocomplete="off" class="form-control" placeholder=@Constants.formRole />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.User.Role"></label>
+                <input asp-for="Input.Role" autocomplete="off" class="form-control" placeholder=@Constants.formRole />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.User.Role"></label>
                 <input asp-for="Input.Role" autocomplete="off" class="form-control" placeholder=@Constants.formRole />
             </div>
 

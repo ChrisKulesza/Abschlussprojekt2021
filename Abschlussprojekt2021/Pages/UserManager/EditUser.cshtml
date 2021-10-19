@@ -9,22 +9,22 @@
     <div class="col-md-12 px-0">
         <form method="post">
             <div class="form-group col-md-4">
-                <label asp-for="@Model.user.FirstName"></label>
+                <label asp-for="Input.FirstName"></label>
                 <input asp-for="Input.FirstName" autocomplete="off" disabled class="form-control" value="@Model.user.FirstName" />
                 <span class="text-danger" asp-validation-for="Input.FirstName"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="@Model.user.LastName"></label>
+                <label asp-for="Input.LastName"></label>
                 <input asp-for="Input.LastName" autocomplete="off" class="form-control" value="@Model.user.LastName" />
                 <span class="text-danger" asp-validation-for="Input.LastName"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="@Model.user.Email"></label>
+                <label asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" autocomplete="off" class="form-control" value="@Model.user.Email" />
                 <span class="text-danger" asp-validation-for="Input.Email"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="@Model.user.Role"></label>
+                <label asp-for="Input.Role"></label>
                 <input class="form-control" value="@Model.user.Role" />
                 <span class="text-danger" asp-validation-for="Input.Email"></span>
             </div>
