@@ -8,15 +8,15 @@
 
 <div class="row">
     <div class="col-md-12 px-0">
-        <form method="post" asp-page-handler="insert">
+        <form method="post">
             <div class="form-group col-md-4">
                 <label asp-for="Input.Name"></label>
-                <input asp-for="Input.Name" autocomplete="off" class="form-control" placeholder="Vorname Nachname" />
+                <input asp-for="Input.Name" autocomplete="off" class="form-control" placeholder=@Constants.formLastVornameNachname />
                 <span class="text-danger" asp-validation-for="Input.Name"></span>
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.Position"></label>
-                <input asp-for="Input.Position" autocomplete="off" class="form-control" placeholder="Titel der ausgeschriebenen Position" />
+                <input asp-for="Input.Position" autocomplete="off" class="form-control" placeholder=@Constants.formJobAdName />
                 <span class="text-danger" asp-validation-for="Input.Position"></span>
             </div>
             @*<div class="form-group col-md-4">
@@ -30,7 +30,7 @@
                                     editorMode="HTML"
                                     enableTabKey="true"
                                     ejs-for="Input.Description"
-                                    placeholder="Stellenbeschreibung bitte hier eingeben."
+                                    placeholder=@Constants.rtePlaceholder
                                     showCharCount="true"
                                     maxLength="2000"
                                     beforeSanitizeHtml="beforeSanitizeHtml"
@@ -49,11 +49,11 @@
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.MainSkills"></label>
-                <input asp-for="Input.MainSkills" autocomplete="off" class="form-control" placeholder="Fähigkeiten des Bewerbers" />
+                <input asp-for="Input.MainSkills" autocomplete="off" class="form-control" placeholder=@Constants.formMainSkills />
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.Region"></label>
-                <input asp-for="Input.Region" autocomplete="off" class="form-control" placeholder="Region" />
+                <input asp-for="Input.Region" autocomplete="off" class="form-control" placeholder=@Constants.formRegion />
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Input.StartDate"></label>
@@ -63,7 +63,7 @@
             <!-- Buttons -->
             <div class="col-md-4">
                 <button type="submit" class="btn btn-secondary">@Constants.BtnSave</button>
-                <button class="btn btn-secondary">@Constants.BtnCancel</button>
+                <button type="submit" class="btn btn-secondary" asp-page-handler="CancelButton" formnovalidate>@Constants.BtnCancel</button>
             </div>
         </form>
     </div>

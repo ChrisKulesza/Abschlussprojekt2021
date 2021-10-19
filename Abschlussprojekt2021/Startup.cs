@@ -1,7 +1,10 @@
 using Abschlussprojekt2021.Areas.Identity.Data;
-using Abschlussprojekt2021.Data;
-using Abschlussprojekt2021.Models;
 using Abschlussprojekt2021.Resources;
+using DataAccess.EFCore.Data;
+using DataAccess.EFCore.Repositories;
+using DataAccess.EFCore.UnitOfWork;
+using Domain.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,15 +32,23 @@ namespace Abschlussprojekt2021
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Register DataContext (DB connection (Dependency Injection))
-            var connection = Configuration.GetConnectionString("DefaultConnection");
+            // Register DatabaseContext class DataAccess.EFCore.Data
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connection));
+            {
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
+            });
 
             // DI Synfuction RTE UI component service
             services.AddScoped<SyncfusionOptionsService>();
-            // DI Repository Design Pattern
-            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+
+            #region Repository Pattern
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient(typeof(IApplicationUserRepository), typeof(ApplicationUserRepository));
+            services.AddTransient(typeof(IJobAdRepository), typeof(JobAdRepository));
+            services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
+            #endregion
 
             #region Snycfusion
             // --------------------------------------------------------------------------------------
@@ -80,7 +91,10 @@ namespace Abschlussprojekt2021
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             #endregion
 
-            services.AddRazorPages();
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizePage("/Error/404");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

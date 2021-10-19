@@ -1,10 +1,9 @@
-﻿using Abschlussprojekt2021.Data;
-using Abschlussprojekt2021.Models;
+﻿using Domain.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Syncfusion.EJ2.Base;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Abschlussprojekt2021.Pages
@@ -12,18 +11,19 @@ namespace Abschlussprojekt2021.Pages
     [BindProperties]
     public class IndexModel : PageModel
     {
-        private readonly IRepository<JobAd> _repository;
+        private readonly IUnitOfWork _unitOfWork;
+
         //public List<JobAd> JobAds { get; set; }
 
-        public IndexModel(IRepository<JobAd> repository)
+        public IndexModel(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         // OnPost handler - Syncfusion UrlAdaptor | GetDbData
         public JsonResult OnPostDataSource([FromBody] DataManagerRequest dm)
         {
-            var data = _repository.GetAllSynfusion();
+            var data = _unitOfWork.JobAd.GetAll();
 
             int count = data.Cast<JobAd>().Count();
             return dm.RequiresCounts ? new JsonResult(new { result = data.Skip(dm.Skip).Take(dm.Take), count = count }) : new JsonResult(data);
@@ -33,26 +33,29 @@ namespace Abschlussprojekt2021.Pages
         public void OnPostDelete([FromBody]CRUDModel<JobAd> value)
         {
             int id = Convert.ToInt32(value.Value.Id);
-            _repository.Delete(id);
+            var entity = _unitOfWork.JobAd.GetById(id);
 
+            _unitOfWork.JobAd.Remove(entity);
+            _unitOfWork.Complete();
             //return RedirectToPage("Index");
         }
 
         // OnPost handler - Syncfusion UrlAdaptor | Duplicate
-        public void OnPostDuplicate([FromBody]CRUDModel<JobAd> value)
+        public void OnPostDuplicate([FromBody]CRUDModel<JobAd> entity)
         {
             //int id = Convert.ToInt32(value.Value.Id);
             JobAd job = new()
             {
-                Name = value.Value.Name,
-                Position = value.Value.Position,
-                Description = value.Value.Description,
-                MainSkills = value.Value.MainSkills,
-                Region = value.Value.Region,
-                StartDate = value.Value.StartDate
+                Name = entity.Value.Name,
+                Position = entity.Value.Position,
+                Description = entity.Value.Description,
+                MainSkills = entity.Value.MainSkills,
+                Region = entity.Value.Region,
+                StartDate = entity.Value.StartDate
             };
 
-            _repository.Insert(job);
+            _unitOfWork.JobAd.Insert(job);
+            _unitOfWork.Complete();
             //return RedirectToPage("Index");
         }
     }

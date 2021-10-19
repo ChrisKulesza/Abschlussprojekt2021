@@ -1,32 +1,28 @@
-using Abschlussprojekt2021.Data;
-using Abschlussprojekt2021.Models;
 using Abschlussprojekt2021.Resources;
+using Domain.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 
 namespace Abschlussprojekt2021.Pages
 {
     [BindProperties]
     public class JobDetailsModel : PageModel
     {
-        private readonly IRepository<JobAd> _repository;
-        private readonly ILogger<JobDetailsModel> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
         public JobAd JobAd { get; set; }
         public InputModel Input { get; set; }
 
-        public JobDetailsModel(IRepository<JobAd> repository, ILogger<JobDetailsModel> logger)
+        public JobDetailsModel(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
-            _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
-        public async Task OnGet(int id)
+        public void OnGet(int id)
         {
-            JobAd = await _repository.GetByIdAsync(id);
+            JobAd = _unitOfWork.JobAd.GetById(id);
         }
 
         public class InputModel
@@ -39,12 +35,12 @@ namespace Abschlussprojekt2021.Pages
 
             [Required]
             [DataType(DataType.EmailAddress)]
-            [Display(Name = "Email Adresse")]
+            [Display(Name = Constants.formEmail)]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Nachricht")]
+            [Display(Name = Constants.formMessage)]
             public string Message { get; set; }
 
             public bool DSGVO { get; set; }

@@ -1,6 +1,6 @@
-using Abschlussprojekt2021.Data;
-using Abschlussprojekt2021.Models;
 using Abschlussprojekt2021.Resources;
+using Domain.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -11,32 +11,46 @@ namespace Abschlussprojekt2021.Pages
     [BindProperties]
     public class CreateJobAdModel : PageModel
     {
-        private readonly IRepository<JobAd> _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateJobAdModel(IRepository<JobAd> repository)
+        public CreateJobAdModel(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public InputModel Input { get; set; }
 
-
-        public RedirectResult OnPostInsert()
+        public RedirectResult OnPost()
         {
-            JobAd jobAd = new()
-            {
-                Name = Input.Name,
-                Position = Input.Position,
-                Description = Input.Description,
-                MainSkills = Input.MainSkills,
-                Region = Input.Region,
-                StartDate = Input.StartDate,
-                Timeframe = Input.Timeframe
-            };
+            JobAd jobAd = new();
 
-            _repository.Insert(jobAd);
+            if (!ModelState.IsValid)
+            {
+                return Redirect("Index");
+            } else
+            {
+                jobAd.Name = Input.Name;
+                jobAd.Position = Input.Position;
+                jobAd.Description = Input.Description;
+                jobAd.MainSkills = Input.MainSkills;
+                jobAd.Region = Input.Region;
+                jobAd.StartDate = Input.StartDate;
+            }
+
+            _unitOfWork.JobAd.Insert(jobAd);
+            _unitOfWork.Complete();
 
             return Redirect("index");
+        }
+
+        public RedirectResult OnPostCancelButton()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Redirect("Index");
+            }
+            
+            return Redirect("Index");
         }
 
         public class InputModel
@@ -62,9 +76,6 @@ namespace Abschlussprojekt2021.Pages
             [DataType(DataType.Date)]
             [Display(Name = Constants.formStartDate)]
             public DateTime StartDate { get; set; }
-
-            [DataType(DataType.Date)]
-            public DateTime Timeframe { get; set; }
         }
     }
 }

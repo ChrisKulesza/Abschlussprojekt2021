@@ -13,7 +13,7 @@
     toolbarItems.Add(new { text = @Constants.syncUserNew, id = "addUser", align = "Left", prefixIcon = Constants.IconPlus });
     // Commands
     commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deletebutton" } });
-    commands.Add(new { type = "Edit", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editbutton" } });
+    commands.Add(new { type = "EditUser", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editbutton" } });
 
     var userEmail = HttpContext.User.Identity.Name;
 }
@@ -72,8 +72,10 @@
         if (commandType == 'JobDetails') {
             window.location.href = `${commandType}?id=` + args.rowData.Id;
         }
-        else if (commandType == 'Edit') {
-            window.location.href = `UserManager/${commandType}User/` + args.rowData.Id;
+        else if (commandType == 'EditUser') {
+            //var host = window.location.host;
+            window.location.href = `/UserManager/${commandType}/` + args.rowData.Id;
+            //window.location.href = `${host}/UserManager/${commandType}/` + args.rowData.Id;
         }
         else if (commandType == 'Delete') {
             // Sending request to post handler named OnPostDelete in the code behind

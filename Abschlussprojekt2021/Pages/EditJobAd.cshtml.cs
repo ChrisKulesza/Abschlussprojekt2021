@@ -1,34 +1,34 @@
-using Abschlussprojekt2021.Data;
-using Abschlussprojekt2021.Models;
 using Abschlussprojekt2021.Resources;
+using Domain.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 
 namespace Abschlussprojekt2021.Pages
 {
     [BindProperties]
     public class EditJobAdModel : PageModel
     {
-        private readonly IRepository<JobAd> _repository;
+        private readonly IUnitOfWork _unitOfWork;
+
         public JobAd JobAd { get; set; }
         public InputModel Input { get; set; }
 
-        public EditJobAdModel(IRepository<JobAd> repository)
+        public EditJobAdModel(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
-        public async Task OnGetAsync(int id)
+        public void OnGet(int id)
         {
-            JobAd = await _repository.GetByIdAsync(id);
+            JobAd = _unitOfWork.JobAd.GetById(id);
         }
 
-        public async Task<RedirectResult> OnPostAsync(int id)
+        public RedirectResult OnPost(int id)
         {
-            JobAd = await _repository.GetByIdAsync(id);
+            JobAd = _unitOfWork.JobAd.GetById(id);
 
             if (ModelState.IsValid)
             {
@@ -38,8 +38,19 @@ namespace Abschlussprojekt2021.Pages
                 JobAd.MainSkills = Input.MainSkills;
                 JobAd.Region = Input.Region;
                 JobAd.StartDate = Input.StartDate;
+            }
 
-                await _repository.UpdateAsync(JobAd);
+            _unitOfWork.JobAd.Update(JobAd);
+            _unitOfWork.Complete();
+
+            return Redirect("/Index");
+        }
+
+        public RedirectResult OnPostCancelButton()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Redirect("/Index");
             }
 
             return Redirect("/Index");

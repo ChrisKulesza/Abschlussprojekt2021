@@ -1,6 +1,7 @@
-using Abschlussprojekt2021.Data;
-using Abschlussprojekt2021.Models;
 using Abschlussprojekt2021.Resources;
+using DataAccess.EFCore.Data;
+using Domain.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,25 +18,26 @@ namespace Abschlussprojekt2021.Pages.UserManager
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _context;
-        private readonly IRepository<ApplicationUser> _repositoryApplicationUser;
+        private readonly IUnitOfWork _unitOfWork;
+
         //private readonly IRepository<AspNetUserRole> _repositoryUserRole;
 
         public IEnumerable<ApplicationUser> Users { get; set; }
-        public List<IdentityRole> Roles { get; set; }
+        public IEnumerable<IdentityRole> Roles { get; set; }
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             ApplicationDbContext context,
-            IRepository<ApplicationUser> repositoryApplicationUser)
+            IUnitOfWork unitOfWork)
             //IRepository<AspNetUserRole> repositoryUserRole)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _context = context;
-            _repositoryApplicationUser = repositoryApplicationUser;
+            _unitOfWork = unitOfWork;
             //_repositoryUserRole = repositoryUserRole;
-            Users = _repositoryApplicationUser.GetAll();
+            Users = _unitOfWork.ApplicationUser.GetAll();
             Roles = _context.Roles.ToList();
 
             // Info text later
@@ -64,7 +66,7 @@ namespace Abschlussprojekt2021.Pages.UserManager
         // OnPost handler - Syncfusion UrlAdaptor | GetDbData
         public JsonResult OnPostDataSource([FromBody] DataManagerRequest dm)
         {
-            var data = _repositoryApplicationUser.GetAll();
+            IEnumerable<ApplicationUser> data = _unitOfWork.ApplicationUser.GetAll();
 
             int count = data.Cast<ApplicationUser>().Count();
             return dm.RequiresCounts ? new JsonResult(new { result = data.Skip(dm.Skip).Take(dm.Take), count = count }) : new JsonResult(data);

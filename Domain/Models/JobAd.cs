@@ -1,11 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-#nullable disable
-
-namespace Abschlussprojekt2021.Models
+namespace Domain.Models
 {
-    public partial class JobAd
+    public class JobAd
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
@@ -13,6 +13,5 @@ namespace Abschlussprojekt2021.Models
         public string MainSkills { get; set; }
         public string Region { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime Timeframe { get; set; }
     }
 }

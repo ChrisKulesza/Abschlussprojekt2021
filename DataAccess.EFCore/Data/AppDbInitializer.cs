@@ -1,10 +1,10 @@
-﻿using Abschlussprojekt2021.Models;
+﻿using Domain.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
-namespace Abschlussprojekt2021.Data
+namespace DataAccess.EFCore.Data
 {
     public class AppDbInitializer
     {

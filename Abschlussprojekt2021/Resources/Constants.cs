@@ -5,15 +5,27 @@
         // Author
         public const string Author = "Christian Kulesza";
 
+        // Navigation
+        public const string navUserLandingPage = "Startseite";
+        public const string navUserManagement = "Benutzerverwaltung";
+
         // Form data
         public const string formFirstName = "Vorname";
         public const string formLastName = "Nachname";
+        public const string formLastVornameNachname = "Vorname Nachname";
         public const string formEmail = "Email";
         public const string formRole = "Rolle";
+        public const string formRegion = "Rolle";
         public const string formMainSkills = "Fähigkeiten";
         public const string formStartDate = "Start date";
         public const string formJobAdName = "Name der Stellenbeschreibung";
         public const string formDescription = "Beschreibung";
+        public const string formMessage = "Nachricht";
+        public const string formPassword = "Passwort";
+        public const string formPasswordConfirm = "Passwort bestätigen";
+
+        // Richtext Editor
+        public const string rtePlaceholder = "Stellenbeschreibung bitte hier eingeben.";
 
         // Syncfusion Data grid
         public const string syncJobAdNew = "Neue Stelle anlegen";
