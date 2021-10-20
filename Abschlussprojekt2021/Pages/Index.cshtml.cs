@@ -36,7 +36,7 @@ namespace Abschlussprojekt2021.Pages
             var entity = _unitOfWork.JobAd.GetById(id);
 
             _unitOfWork.JobAd.Remove(entity);
-            _unitOfWork.Complete();
+            _unitOfWork.SaveChanges();
             //return RedirectToPage("Index");
         }
 
@@ -55,7 +55,7 @@ namespace Abschlussprojekt2021.Pages
             };
 
             _unitOfWork.JobAd.Insert(job);
-            _unitOfWork.Complete();
+            _unitOfWork.SaveChanges();
             //return RedirectToPage("Index");
         }
     }

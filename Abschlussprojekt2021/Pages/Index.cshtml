@@ -14,11 +14,11 @@
     if (User.IsInRole(Constants.RoleAdmin) || User.IsInRole(Constants.RoleEditor))
     {
         toolbarItems.Add(new { text = @Constants.syncJobAdNew, id = "addJobAd", align = "Left", prefixIcon = Constants.IconPlus });
-        commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat", id = "deleteButton" } });
-        commands.Add(new { type = "EditJobAd", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat", id = "editButton" } });
-        commands.Add(new { type = "Duplicate", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat", id = "copyButton" } });
+        commands.Add(new { type = "Delete", buttonOption = new { iconCss = Constants.IconDelete, cssClass = "e-flat e-custom", id = "deleteButton" } });
+        commands.Add(new { type = "EditJobAd", buttonOption = new { iconCss = Constants.IconEdit, cssClass = "e-flat e-custom", id = "editButton" } });
+        commands.Add(new { type = "Duplicate", buttonOption = new { iconCss = Constants.IconCopy, cssClass = "e-flat e-custom", id = "copyButton" } });
     }
-    commands.Add(new { type = "JobDetails", buttonOption = new { iconCss = Constants.IconDetails, cssClass = "e-flat", id = "DetailsButton" } });
+    commands.Add(new { type = "JobDetails", buttonOption = new { iconCss = Constants.IconDetails, cssClass = "e-flat e-custom", id = "DetailsButton" } });
 }
 
 <div>

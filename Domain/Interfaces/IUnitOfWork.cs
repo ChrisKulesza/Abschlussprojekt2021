@@ -6,6 +6,6 @@ namespace Domain.Interfaces
     {
         IJobAdRepository JobAd { get; }
         IApplicationUserRepository ApplicationUser { get; }
-        int Complete();
+        int SaveChanges();
     }
 }

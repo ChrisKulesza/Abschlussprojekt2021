@@ -38,7 +38,7 @@ namespace Abschlussprojekt2021.Pages
             }
 
             _unitOfWork.JobAd.Insert(jobAd);
-            _unitOfWork.Complete();
+            _unitOfWork.SaveChanges();
 
             return Redirect("index");
         }

@@ -91,10 +91,28 @@ namespace Abschlussprojekt2021
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             #endregion
 
+            // Authorization
+            // https://stackoverflow.com/questions/50743667/authorize-register-page-in-asp-net-core-2-1-with-identity-ui-as-a-library
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdministratorRole",
+                    policy => policy.RequireRole("Admin"));
+                options.DefaultPolicy = options.GetPolicy("RequireAdministratorRole");
+            });
+
+
             services.AddRazorPages(options =>
             {
-                options.Conventions.AuthorizePage("/Error/404");
+                //options.Conventions.AuthorizePage("/Error/404");
+                //options.Conventions.AuthorizeAreaPage("Identity", "/Account/Register");
             });
+
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    //options.LoginPath = $"/Identity/Account/Login";
+            //    //options.LogoutPath = $"/Identity/Account/Logout";
+            //    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -129,7 +147,7 @@ namespace Abschlussprojekt2021
             #endregion
 
             // Here is our middleware registration
-            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            //app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             app.UseRouting();
             app.UseAuthentication();

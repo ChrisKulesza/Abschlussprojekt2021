@@ -19,7 +19,7 @@ namespace DataAccess.EFCore.UnitOfWork
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
 
-        public int Complete()
+        public int SaveChanges()
         {
             return _context.SaveChanges();
         }
