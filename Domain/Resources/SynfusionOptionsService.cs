@@ -2,6 +2,9 @@
 
 namespace Domain.Resources
 {
+    /// <summary>
+    /// Provides Syncfusion options and is the primary place to save them.
+    /// </summary>
     public class SyncfusionOptionsService
     {
         IEnumerable<string> _rteOptionsListMinimal = new List<string>()

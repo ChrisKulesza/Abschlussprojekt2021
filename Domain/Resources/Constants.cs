@@ -1,5 +1,9 @@
 ﻿namespace Domain.Resources
 {
+    /// <summary>
+    /// Provides all constants globally via dependency injection. It contains text 
+    /// modules, prepopulating texts for input fields, button texts and error messages.
+    /// </summary>
     public static class Constants
     {
         // Author

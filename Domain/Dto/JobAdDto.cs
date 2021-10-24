@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Dto
 {
+    /// <summary>
+    /// Provides the transfer object of the JobAd class and its properties.
+    /// </summary>
     public class JobAdDto
     {
         [Key]
