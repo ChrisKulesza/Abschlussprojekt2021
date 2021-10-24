@@ -1,4 +1,4 @@
-﻿using Abschlussprojekt2021.Resources;
+﻿using Domain.Resources;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -6,36 +6,42 @@ using System.Threading.Tasks;
 
 namespace Abschlussprojekt2021.Areas.Identity.Data
 {
-    // This class must be in the scope of Identity. Otherwise the roles are not persisted in the database.
+    /// <summary>
+    /// Provides methods for creating roles for Identity.
+    /// 
+    /// @warning This class must be in the scope of Identity. Otherwise the roles are not persisted in the database.
+    /// </summary>
     public class Roles
     {
         /// <summary>
-        /// Creates the roles stored in the method and writes them to the database.
+        /// Creates the contained (Admin, Editor) roles and persists them in the database.
         /// </summary>
         /// <param name="serviceProvider"></param>
-        /// <returns></returns>
         public static async Task CreateRoles(IServiceProvider serviceProvider)
         {
             try
             {
+                // dont know
                 var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
+                // Variable for storing the test result as to whether the role already exists.
                 IdentityResult roleResult;
-                // Adding admin role
+                
+                // Check whether the role editor already exists.
                 var roleCheck = await RoleManager.RoleExistsAsync(Constants.RoleAdmin);
-                // checking if role already exists
+                // Case distinction whether the role exists in the database.
                 if (!roleCheck)
                 {
                     // create the role and seed them to the database if not exist
                     roleResult = await RoleManager.CreateAsync(new IdentityRole(Constants.RoleAdmin));
                 }
 
-                // Adding editor role
+                // Check whether the role editor already exists.
                 roleCheck = await RoleManager.RoleExistsAsync(Constants.RoleEditor);
-                // checking if role already exists
+                // Case distinction whether the role exists in the database.
                 if (!roleCheck)
                 {
-                    // create the role and seed them to the database if not exist
+                    // Create the role if it doesn't exist.
                     roleResult = await RoleManager.CreateAsync(new IdentityRole(Constants.RoleEditor));
                 }
             }

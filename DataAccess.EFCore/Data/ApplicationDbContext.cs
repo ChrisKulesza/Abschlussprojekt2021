@@ -10,6 +10,9 @@ namespace DataAccess.EFCore.Data
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public DbSet<JobAd> JobAds { get; set; }
     }
 }

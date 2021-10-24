@@ -12,14 +12,15 @@
     <div class="col-md-12 px-0">
         <form method="post">
             <div class="form-group col-md-4">
-                <label asp-for="Input.Name"></label>
-                <input asp-for="Input.Name" autocomplete="off" class="form-control" value="@Model.JobAd.Name" />
-                <span class="text-danger" asp-validation-for="Input.Name"></span>
+                <label asp-for="Dto.Name"></label>
+                <input asp-for="Dto.Name" autocomplete="off" class="form-control" value="@Model.JobAd.Name" />
+                <span class="text-danger" asp-validation-for="Dto.Name"></span>
             </div>
+
             <div class="form-group col-md-4">
-                <label asp-for="Input.Position"></label>
-                <input asp-for="Input.Position" autocomplete="off" class="form-control" value="@Model.JobAd.Position" />
-                <span class="text-danger" asp-validation-for="Input.Position"></span>
+                <label asp-for="Dto.Position"></label>
+                <input asp-for="Dto.Position" autocomplete="off" class="form-control" value="@Model.JobAd.Position" />
+                <span class="text-danger" asp-validation-for="Dto.Position"></span>
             </div>
             @*<div class="form-group col-md-4">
                     <label asp-for="Input.Description"></label>
@@ -27,12 +28,12 @@
                     <span class="text-danger" asp-validation-for="Input.Description"></span>
                 </div>*@
             <div class="form-group col-md-8">
-                <label asp-for="Input.Description"></label>
+                <label asp-for="Dto.Description"></label>
                 <!-- RTE Component -->
                 <ejs-richtexteditor id="rteEdit"
                                     editorMode="HTML"
                                     enableTabKey="true"
-                                    ejs-for="Input.Description"
+                                    ejs-for="Dto.Description"
                                     showCharCount="true"
                                     maxLength="2000"
                                     beforeSanitizeHtml="beforeSanitizeHtml"
@@ -44,25 +45,25 @@
                                                       enable="true">
                     </e-richtexteditor-toolbarsettings>
                     <e-content-template>
-                        @Model.JobAd.Description
+                        Dto.Description
                     </e-content-template>
                 </ejs-richtexteditor>
                 <!-- RTE Component -->
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="Input.MainSkills"></label>
-                <input asp-for="Input.MainSkills" autocomplete="off" class="form-control" value="@Model.JobAd.MainSkills" />
-                <span class="text-danger" asp-validation-for="Input.MainSkills"></span>
+                <label asp-for="Dto.MainSkills"></label>
+                <input asp-for="Dto.MainSkills" autocomplete="off" class="form-control" value="@Model.JobAd.MainSkills" />
+                <span class="text-danger" asp-validation-for="Dto.MainSkills"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="Input.Region"></label>
-                <input asp-for="Input.Region" autocomplete="off" class="form-control" value="@Model.JobAd.Region" />
-                <span class="text-danger" asp-validation-for="Input.Region"></span>
+                <label asp-for="Dto.Region"></label>
+                <input asp-for="Dto.Region" autocomplete="off" class="form-control" value="@Model.JobAd.Region" />
+                <span class="text-danger" asp-validation-for="Dto.Region"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="Input.StartDate"></label>
-                <input id="dateInput" asp-for="Input.StartDate" class="form-control" value="@Model.JobAd.StartDate.ToString("yyyy-MM-dd")" />
-                <span class="text-danger" asp-validation-for="Input.StartDate"></span>
+                <label asp-for="Dto.StartDate"></label>
+                <input id="dateInput" asp-for="Dto.StartDate" class="form-control" value="@Model.JobAd.StartDate.ToString("yyyy-MM-dd")" />
+                <span class="text-danger" asp-validation-for="Dto.StartDate"></span>
             </div>
 
             <!-- Buttons -->

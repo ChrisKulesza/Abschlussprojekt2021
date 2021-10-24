@@ -8,6 +8,10 @@ namespace DataAccess.EFCore.UnitOfWork
     {
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -19,7 +23,7 @@ namespace DataAccess.EFCore.UnitOfWork
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
 
-        public int SaveChanges()
+        public int Complete()
         {
             return _context.SaveChanges();
         }

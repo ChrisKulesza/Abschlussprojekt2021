@@ -1,4 +1,4 @@
-using Abschlussprojekt2021.Resources;
+using Domain.Resources;
 using DataAccess.EFCore.Data;
 using Domain.Interfaces;
 using Domain.Models;

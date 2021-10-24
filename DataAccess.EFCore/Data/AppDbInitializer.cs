@@ -6,18 +6,27 @@ using System.Linq;
 
 namespace DataAccess.EFCore.Data
 {
+    /// <summary>
+    /// Generates initial data records as soon as the corresponding table in the database is empty.
+    /// </summary>
     public class AppDbInitializer
     {
+        /// <summary>
+        /// Creates records in the database in the <see cref="JobAd"/>s table if none exist.
+        /// </summary>
+        /// <param name="applicationBuilder">Provides the mechanisms to configure an application's request pipeline.</param>
         public static void Seed(IApplicationBuilder applicationBuilder)
         {
             // add JobAd Data to Database
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
+                // Make the database context available.
                 var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
 
-                // check if table in database is empty, if empty then populate following data
+                // Check whether the table JobAds in the database contains data records.
                 if (!context.JobAds.Any())
                 {
+                    // If there are no records then create the following.
                     context.JobAds.AddRange(new JobAd
                     {
                         Name = ".NET Junior Anwendungsentwickler (m/w/d)",

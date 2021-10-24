@@ -5,42 +5,71 @@ using System.Linq;
 
 namespace DataAccess.EFCore.Repositories
 {
-    /*
-        Also note that, for the ADD and Remove Functions, we just do the operation on the dbContext object.
-        But we are not yet commiting/updating/saving the changes to the database whatsover. This is not 
-        something to be done in a Repository Class. We would need Unit of Work Pattern for these cases 
-        where you commit data to the database. We will discuss about Unit of Work in a later section.
-     */
-
+    /// <summary>
+    /// Generic repository class for database access.
+    /// </summary>
+    /// <typeparam name="T">The type of the entity.</typeparam>
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+        //Protected Variables
         protected readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenericRepository{T}" /> class.
+        /// </summary>
+        /// <param name="context">The database context.</param>
         public GenericRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// 
+        /// <inheritdoc cref="Domain.Interfaces.IGenericRepository{T}.GetAll"/>
+        /// <returns>A <see cref="IEnumerable{T}" /> that contains elements from the input sequence.</returns>
         public IEnumerable<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }
 
+        /// <summary>
+        /// Filters a sequence of values based on a id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public T GetById(int id)
         {
             return _context.Set<T>().Find(id);
         }
 
+        /// <summary>
+        /// Adds the specified entity.
+        /// </summary>
+        /// <typeparam name="T">The type of the entity.</typeparam>
+        /// <param name="entity">The entity.</param>
         public void Insert(T entity)
         {
             _context.Set<T>().Add(entity);
         }
 
+        /// <summary>
+        /// Deletes the specified entity.
+        /// </summary>
+        /// <typeparam name="T">The type of the entity.</typeparam>
+        /// <param name="entity">The entity.</param>
         public void Remove(T entity)
         {
             _context.Set<T>().Remove(entity);
         }
 
+        /// <summary>
+        /// Updates changes of the existing entity. The caller must later call SaveChanges() 
+        /// on the repository explicitly to save the entity to database.
+        /// </summary>
+        /// <typeparam name="T">The type of the entity.</typeparam>
+        /// <param name="entity">The entity.</param>
         public void Update(T entity)
         {
             _context.Set<T>().Update(entity);

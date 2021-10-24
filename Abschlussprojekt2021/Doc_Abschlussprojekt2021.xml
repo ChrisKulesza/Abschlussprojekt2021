@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Abschlussprojekt2021</name>
+    </assembly>
+    <members>
+        <member name="T:Abschlussprojekt2021.Areas.Identity.Data.Roles">
+            <summary>
+            Provides methods for creating roles for Identity.
+            
+            @warning This class must be in the scope of Identity. Otherwise the roles are not persisted in the database.
+            </summary>
+        </member>
+        <member name="M:Abschlussprojekt2021.Areas.Identity.Data.Roles.CreateRoles(System.IServiceProvider)">
+            <summary>
+            Creates the contained (Admin, Editor) roles and persists them in the database.
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="F:Abschlussprojekt2021.Pages.IndexModel._unitOfWork">
+            <value>Private field of the Unit of work.</value>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.IndexModel.#ctor(Domain.Interfaces.IUnitOfWork)">
+            <summary>
+            Creates an instance of the class unit of work. This interface provides the DbContext.
+            </summary>
+            <param name="unitOfWork">The entity needed for referencing.</param>
+        </member>
+    </members>
+</doc>

@@ -1,4 +1,4 @@
-using Abschlussprojekt2021.Resources;
+using Domain.Resources;
 using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +39,7 @@ namespace Abschlussprojekt2021.Pages.UserManager
             }
 
             _unitOfWork.ApplicationUser.Update(user);
-            _unitOfWork.SaveChanges();
+            _unitOfWork.Complete();
 
             return Redirect("/UserManager/index");
         }

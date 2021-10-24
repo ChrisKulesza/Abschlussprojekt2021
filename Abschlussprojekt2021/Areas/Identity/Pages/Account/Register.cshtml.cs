@@ -1,4 +1,4 @@
-﻿using Abschlussprojekt2021.Resources;
+﻿using Domain.Resources;
 using Domain.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;

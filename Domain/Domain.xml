@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Domain</name>
+    </assembly>
+    <members>
+        <member name="T:Domain.Interfaces.IGenericRepository`1">
+            <summary>
+            This generic interface provides the methods for database access.
+            </summary>
+            <typeparam name="T">The type.</typeparam>
+        </member>
+        <member name="M:Domain.Interfaces.IGenericRepository`1.GetAll">
+            <summary>
+            Gets all.
+            </summary>
+            <returns>Return a <see cref="T:System.Collections.Generic.IEnumerable`1"/> that contains elements from the input sequence.</returns>
+        </member>
+        <member name="M:Domain.Interfaces.IGenericRepository`1.GetById(System.Int32)">
+            <summary>
+            Finds an entity with the given primary key values. If an entity with the given
+            primary key values is being tracked by the context, then it is returned immediately
+            without making a request to the database. Otherwise, a query is made to the database
+            for an entity with the given primary key values and this entity, if found, is
+            attached to the context and returned. If no entity is found, then null is returned.
+            </summary>
+            
+            <param name="id">The values of the primary key for the entity to be found.</param>
+            <returns>The entity found, or null.</returns>
+        </member>
+        <member name="T:Domain.Interfaces.IUnitOfWork">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Domain.Interfaces.IUnitOfWork.JobAd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Domain.Interfaces.IUnitOfWork.ApplicationUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Domain.Interfaces.IUnitOfWork.Complete">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Domain.Models.ApplicationUser">
+            <summary>
+            Provides the entity of the program user. Which inherits from the IdentityUser class.
+            </summary>
+        </member>
+        <member name="P:Domain.Models.ApplicationUser.FirstName">
+            <value>First name of the user.</value>
+        </member>
+        <member name="P:Domain.Models.ApplicationUser.LastName">
+            <value>Last name of the user.</value>
+        </member>
+        <member name="P:Domain.Models.ApplicationUser.Role">
+            <value>Role of the user for Role based access control.</value>
+        </member>
+        <member name="T:Domain.Models.Button">
+            <summary>
+            Model of a syncfusion button for a modal window.
+            </summary>
+        </member>
+        <member name="P:Domain.Models.Button.content">
+            <value>Text value of the button.</value>
+        </member>
+        <member name="P:Domain.Models.Button.isPrimary">
+            <value>Determination of whether the button is a first-order button.</value>
+        </member>
+        <member name="P:Domain.Models.Button.cssClass">
+            <value>Css class of the created button.</value>
+        </member>
+        <member name="T:Domain.Models.JobAd">
+            <summary>
+            This class provides the model of the job posting. Via which the data is accessed.
+            </summary>
+        </member>
+        <member name="P:Domain.Models.JobAd.Id">
+            <value>Id of the job posting.</value>
+        </member>
+        <member name="P:Domain.Models.JobAd.Name">
+            <value>Name of the job posting.</value>
+        </member>
+        <member name="P:Domain.Models.JobAd.Position">
+            <value>Position to be filled by the job posting.</value>
+        </member>
+        <member name="P:Domain.Models.JobAd.Description">
+            <value>Description of the job posting.</value>
+        </member>
+        <member name="P:Domain.Models.JobAd.MainSkills">
+            <value>Defines the region in which the job posting is valid.</value>
+        </member>
+        <member name="P:Domain.Models.JobAd.Region">
+            <value></value>
+        </member>
+        <member name="P:Domain.Models.JobAd.StartDate">
+            <value>Defines the start date of the job posting.</value>
+        </member>
+        <member name="M:Domain.Resources.SyncfusionOptionsService.GetRTEOptionsListMinimal">
+            <summary>
+            Provides the RTE options. The scope is minimal in the context of the project.
+            </summary>
+            <returns>Returns a list of options for the Syncfusion UI component RTE.</returns>
+        </member>
+        <member name="M:Domain.Resources.SyncfusionOptionsService.GetRTEOptionsListMaximal">
+            <summary>
+            Provides the RTE options. The scope is maximum in the context of the project.
+            </summary>
+            <returns>Returns a list of options for the Syncfusion UI component RTE.</returns>
+        </member>
+    </members>
+</doc>

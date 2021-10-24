@@ -1,10 +1,10 @@
 using Abschlussprojekt2021.Areas.Identity.Data;
-using Abschlussprojekt2021.Resources;
 using DataAccess.EFCore.Data;
 using DataAccess.EFCore.Repositories;
 using DataAccess.EFCore.UnitOfWork;
 using Domain.Interfaces;
 using Domain.Models;
+using Domain.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -71,7 +71,7 @@ namespace Abschlussprojekt2021
                 options.Password.RequireDigit = false; // 0-9
                 options.Password.RequireLowercase = true; // a-z
                 options.Password.RequireUppercase = true; // A-Z
-                options.Password.RequireNonAlphanumeric = false; // !"§$%
+                options.Password.RequireNonAlphanumeric = false; // !"?$%
                 options.Password.RequiredLength = 6;
 
                 // lockout settings
@@ -100,12 +100,24 @@ namespace Abschlussprojekt2021
                 options.DefaultPolicy = options.GetPolicy("RequireAdministratorRole");
             });
 
-
             services.AddRazorPages(options =>
             {
                 //options.Conventions.AuthorizePage("/Error/404");
                 //options.Conventions.AuthorizeAreaPage("Identity", "/Account/Register");
             });
+
+            #region AutoMapper
+            // Auto Mapper Configurations
+            //var mapperConfig = new MapperConfiguration(config =>
+            //{
+            //    config.AddProfile(new ModelMapper());
+            //});
+
+            //IMapper mapper = mapperConfig.CreateMapper();
+            //services.AddSingleton(mapper);
+
+            services.AddAutoMapper(typeof(Startup));
+            #endregion
 
             //services.ConfigureApplicationCookie(options =>
             //{
@@ -158,11 +170,10 @@ namespace Abschlussprojekt2021
                 endpoints.MapRazorPages();
             });
 
-            // Populating seed data to database
+            // Writes data to the database when the database is empty, otherwise no changes are made.
             AppDbInitializer.Seed(app);
 
             // Create the roles if they don't already exist
-            //Roles.createRoles(services).Wait();
             Roles.CreateRoles(services).Wait();
         }
     }

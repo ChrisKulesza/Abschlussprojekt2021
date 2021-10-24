@@ -1,0 +1,95 @@
+\hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model}{}\doxysection{Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model Class Reference}
+\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model}\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+Inheritance diagram for Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a23472c4b7ef4ebcca7f33772b900ea8d}{External\+Logins\+Model}} (User\+Manager$<$ Identity\+User $>$ user\+Manager, Sign\+In\+Manager$<$ Identity\+User $>$ sign\+In\+Manager)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a1236fbdf823093de694cafe7c8b7a42c}{On\+Get\+Async}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a17fca3c9870089b975008d0714e983fb}{On\+Post\+Remove\+Login\+Async}} (string login\+Provider, string provider\+Key)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a92e6091c4a07ddcc43b64251fba2f848}{On\+Post\+Link\+Login\+Async}} (string provider)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_aa9ecd8e76d914b7470abbd099a2802b1}{On\+Get\+Link\+Login\+Callback\+Async}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+IList$<$ User\+Login\+Info $>$ \mbox{\hyperlink{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_ad4aab7dd75cdf30971fbbe11423821f5}{Current\+Logins}}\hspace{0.3cm}{\ttfamily  \mbox{[}getset\mbox{]}}
+\item 
+IList$<$ Authentication\+Scheme $>$ \mbox{\hyperlink{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a512a7032c2103cff07d0b614f03be391}{Other\+Logins}}\hspace{0.3cm}{\ttfamily  \mbox{[}getset\mbox{]}}
+\item 
+bool \mbox{\hyperlink{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a57ca444dfaa9577913965816f39d1ed3}{Show\+Remove\+Button}}\hspace{0.3cm}{\ttfamily  \mbox{[}getset\mbox{]}}
+\item 
+string \mbox{\hyperlink{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a121f77571846306035a308f1011438cd}{Status\+Message}}\hspace{0.3cm}{\ttfamily  \mbox{[}getset\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a23472c4b7ef4ebcca7f33772b900ea8d}\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a23472c4b7ef4ebcca7f33772b900ea8d}} 
+\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}!ExternalLoginsModel@{ExternalLoginsModel}}
+\index{ExternalLoginsModel@{ExternalLoginsModel}!Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+\doxysubsubsection{\texorpdfstring{ExternalLoginsModel()}{ExternalLoginsModel()}}
+{\footnotesize\ttfamily Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model.\+External\+Logins\+Model (\begin{DoxyParamCaption}\item[{User\+Manager$<$ Identity\+User $>$}]{user\+Manager,  }\item[{Sign\+In\+Manager$<$ Identity\+User $>$}]{sign\+In\+Manager }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a1236fbdf823093de694cafe7c8b7a42c}\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a1236fbdf823093de694cafe7c8b7a42c}} 
+\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}!OnGetAsync@{OnGetAsync}}
+\index{OnGetAsync@{OnGetAsync}!Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+\doxysubsubsection{\texorpdfstring{OnGetAsync()}{OnGetAsync()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model.\+On\+Get\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_aa9ecd8e76d914b7470abbd099a2802b1}\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_aa9ecd8e76d914b7470abbd099a2802b1}} 
+\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}!OnGetLinkLoginCallbackAsync@{OnGetLinkLoginCallbackAsync}}
+\index{OnGetLinkLoginCallbackAsync@{OnGetLinkLoginCallbackAsync}!Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+\doxysubsubsection{\texorpdfstring{OnGetLinkLoginCallbackAsync()}{OnGetLinkLoginCallbackAsync()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model.\+On\+Get\+Link\+Login\+Callback\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a92e6091c4a07ddcc43b64251fba2f848}\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a92e6091c4a07ddcc43b64251fba2f848}} 
+\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}!OnPostLinkLoginAsync@{OnPostLinkLoginAsync}}
+\index{OnPostLinkLoginAsync@{OnPostLinkLoginAsync}!Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+\doxysubsubsection{\texorpdfstring{OnPostLinkLoginAsync()}{OnPostLinkLoginAsync()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model.\+On\+Post\+Link\+Login\+Async (\begin{DoxyParamCaption}\item[{string}]{provider }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a17fca3c9870089b975008d0714e983fb}\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a17fca3c9870089b975008d0714e983fb}} 
+\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}!OnPostRemoveLoginAsync@{OnPostRemoveLoginAsync}}
+\index{OnPostRemoveLoginAsync@{OnPostRemoveLoginAsync}!Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+\doxysubsubsection{\texorpdfstring{OnPostRemoveLoginAsync()}{OnPostRemoveLoginAsync()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model.\+On\+Post\+Remove\+Login\+Async (\begin{DoxyParamCaption}\item[{string}]{login\+Provider,  }\item[{string}]{provider\+Key }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_ad4aab7dd75cdf30971fbbe11423821f5}\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_ad4aab7dd75cdf30971fbbe11423821f5}} 
+\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}!CurrentLogins@{CurrentLogins}}
+\index{CurrentLogins@{CurrentLogins}!Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+\doxysubsubsection{\texorpdfstring{CurrentLogins}{CurrentLogins}}
+{\footnotesize\ttfamily IList$<$User\+Login\+Info$>$ Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model.\+Current\+Logins\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\Hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a512a7032c2103cff07d0b614f03be391}\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a512a7032c2103cff07d0b614f03be391}} 
+\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}!OtherLogins@{OtherLogins}}
+\index{OtherLogins@{OtherLogins}!Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+\doxysubsubsection{\texorpdfstring{OtherLogins}{OtherLogins}}
+{\footnotesize\ttfamily IList$<$Authentication\+Scheme$>$ Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model.\+Other\+Logins\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\Hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a57ca444dfaa9577913965816f39d1ed3}\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a57ca444dfaa9577913965816f39d1ed3}} 
+\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}!ShowRemoveButton@{ShowRemoveButton}}
+\index{ShowRemoveButton@{ShowRemoveButton}!Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+\doxysubsubsection{\texorpdfstring{ShowRemoveButton}{ShowRemoveButton}}
+{\footnotesize\ttfamily bool Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model.\+Show\+Remove\+Button\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\Hypertarget{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a121f77571846306035a308f1011438cd}\label{class_abschlussprojekt2021_1_1_areas_1_1_identity_1_1_pages_1_1_account_1_1_manage_1_1_external_logins_model_a121f77571846306035a308f1011438cd}} 
+\index{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}!StatusMessage@{StatusMessage}}
+\index{StatusMessage@{StatusMessage}!Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel@{Abschlussprojekt2021.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel}}
+\doxysubsubsection{\texorpdfstring{StatusMessage}{StatusMessage}}
+{\footnotesize\ttfamily string Abschlussprojekt2021.\+Areas.\+Identity.\+Pages.\+Account.\+Manage.\+External\+Logins\+Model.\+Status\+Message\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
