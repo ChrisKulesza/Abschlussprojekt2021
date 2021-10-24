@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿using AutoMapper;
+using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,19 +12,24 @@ namespace Abschlussprojekt2021.Pages
     [BindProperties]
     public class IndexModel : PageModel
     {
-        /// <value>Private field of the Unit of work.</value>
+        /// <value>Private field of the IUnitOfWork interface.</value>
         private readonly IUnitOfWork _unitOfWork;
 
         /// <summary>
-        /// Creates an instance of the class unit of work. This interface provides the DbContext.
+        /// Dependency of the IUnitOfWork interface made available via constructor injection.
         /// </summary>
-        /// <param name="unitOfWork">The entity needed for referencing.</param>
+        /// <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
         public IndexModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // OnPost handler - Syncfusion UrlAdaptor | GetDbData
+        /// <summary>
+        /// Reads all data records in the JobAds table from the database. 
+        /// These are then transferred to the Syncfusion UI component DataGrid.
+        /// </summary>
+        /// <param name="dm"></param>
+        /// <returns></returns>
         public JsonResult OnPostDataSource([FromBody] DataManagerRequest dm)
         {
             // Fetches all records of the JobAd table from the database using Unit of work
@@ -31,7 +37,7 @@ namespace Abschlussprojekt2021.Pages
 
             // Counts the number of data records in the transferred IEnumerable and casts this explicitly beforehand.
             int count = data.Cast<JobAd>().Count();
-            // Returns the data records received from the database in the form of a JsonResult.
+            // Returns the data records received from the database in form of a JsonResult.
             return dm.RequiresCounts ? new JsonResult(new { result = data.Skip(dm.Skip).Take(dm.Take), count = count }) : new JsonResult(data);
         }
 
@@ -43,9 +49,10 @@ namespace Abschlussprojekt2021.Pages
             // Looks for the appropriate data record based on the passed ID.
             var entity = _unitOfWork.JobAd.GetById(id);
 
+            // Removes the passed record of the JobAd table in memory.
             _unitOfWork.JobAd.Remove(entity);
+            // Writes the new status of the data record to the JobAd table.
             _unitOfWork.Complete();
-            //return RedirectToPage("Index");
         }
 
         // OnPost handler - Syncfusion UrlAdaptor | Duplicate
@@ -62,9 +69,10 @@ namespace Abschlussprojekt2021.Pages
                 StartDate = entity.Value.StartDate
             };
 
+            // Create a new record of the JobAd table in memory.
             _unitOfWork.JobAd.Insert(job);
+            // Write the record in memory to the JobAd table in the database.
             _unitOfWork.Complete();
-            //return RedirectToPage("Index");
         }
     }
 }

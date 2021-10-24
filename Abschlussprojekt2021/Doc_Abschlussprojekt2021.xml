@@ -17,6 +17,31 @@
             </summary>
             <param name="serviceProvider"></param>
         </member>
+        <member name="F:Abschlussprojekt2021.Pages.CreateJobAdModel._unitOfWork">
+            <value>Private field of the IUnitOfWork interface.</value>
+        </member>
+        <member name="F:Abschlussprojekt2021.Pages.CreateJobAdModel._mapper">
+            <value>Private field of the IMapper interface.</value>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.CreateJobAdModel.#ctor(Domain.Interfaces.IUnitOfWork,AutoMapper.IMapper)">
+            <summary>
+            Dependency of the IUnitOfWork interface made available via constructor injection.
+            </summary>
+            <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
+            <param name="mapper">Initialization parameters IMapper.</param>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.CreateJobAdModel.OnPost">
+            <summary>
+            Creates a new record in the database.
+            </summary>
+            <returns>Forwarding to the index page.</returns>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.CreateJobAdModel.OnPostCancelButton">
+            <summary>
+            If the user presses the cancel button in the view, he will be redirected to the index page.
+            </summary>
+            <returns>Forwarding to the index page.</returns>
+        </member>
         <member name="F:Abschlussprojekt2021.Pages.IndexModel._unitOfWork">
             <value>Private field of the Unit of work.</value>
         </member>
