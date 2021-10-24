@@ -8,33 +8,33 @@
 <div class="d-flex justify-content-center">
     <div class="col jobad">
         <p>
-            <h5>Job Ad <span class="stellenId">(Stellen-Id Dto.Id)</span></h5>
+            <h5>Job Ad <span class="stellenId">(Stellen-Id @Model.Dto.Id)</span></h5>
         </p>
-        <p class="text-uppercase">Dto.Name</p>
+        <p class="text-uppercase">@Model.Dto.Name</p>
 
         <p>
             Position<br />
-            Dto.Position
+            @Model.Dto.Position
         </p>
 
         <p>
             Main Skills<br />
-            Dto.MainSkills
+            @Model.Dto.MainSkills
         </p>
 
         <p>
             Region<br />
-            Dto.Region
+            @Model.Dto.Region
         </p>
 
         <p>
             Description<br />
-            Dto.Description
+            @Model.Dto.Description
         </p>
 
         <p>
             Start date<br />
-            Dto.StartDate.ToString("ddd., dd.MM.yyyy")
+            @Model.Dto.StartDate.ToString("ddd., dd.MM.yyyy")
         </p>
 
         <!-- Button - Redirect to Landingpage -->

@@ -4,6 +4,11 @@
         <name>Domain</name>
     </assembly>
     <members>
+        <member name="T:Domain.Dto.JobAdDto">
+            <summary>
+            Provides the transfer object of the JobAd class and its properties.
+            </summary>
+        </member>
         <member name="T:Domain.Interfaces.IGenericRepository`1">
             <summary>
             This generic interface provides the methods for database access.
@@ -102,6 +107,17 @@
         </member>
         <member name="P:Domain.Models.JobAd.StartDate">
             <value>Defines the start date of the job posting.</value>
+        </member>
+        <member name="T:Domain.Resources.Constants">
+            <summary>
+            Provides all constants globally via dependency injection. It contains text 
+            modules, prepopulating texts for input fields, button texts and error messages.
+            </summary>
+        </member>
+        <member name="T:Domain.Resources.SyncfusionOptionsService">
+            <summary>
+            Provides Syncfusion options and is the primary place to save them.
+            </summary>
         </member>
         <member name="M:Domain.Resources.SyncfusionOptionsService.GetRTEOptionsListMinimal">
             <summary>

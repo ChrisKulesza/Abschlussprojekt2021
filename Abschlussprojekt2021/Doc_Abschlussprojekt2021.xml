@@ -17,6 +17,16 @@
             </summary>
             <param name="serviceProvider"></param>
         </member>
+        <member name="T:Abschlussprojekt2021.Helpers.ModelMapper">
+            <summary>
+            This method contains the mapping configurations for the AutoMapper.
+            </summary>
+        </member>
+        <member name="M:Abschlussprojekt2021.Helpers.ModelMapper.#ctor">
+            <summary>
+             Mapping configurations for the JobAd class.
+            </summary>
+        </member>
         <member name="F:Abschlussprojekt2021.Pages.CreateJobAdModel._unitOfWork">
             <value>Private field of the IUnitOfWork interface.</value>
         </member>
@@ -30,6 +40,12 @@
             <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
             <param name="mapper">Initialization parameters IMapper.</param>
         </member>
+        <member name="P:Abschlussprojekt2021.Pages.CreateJobAdModel.JobAd">
+            <value>Property to prepopulate the input fields of the form.</value>
+        </member>
+        <member name="P:Abschlussprojekt2021.Pages.CreateJobAdModel.Dto">
+            <value>DTO Property to capture the input of the user.</value>
+        </member>
         <member name="M:Abschlussprojekt2021.Pages.CreateJobAdModel.OnPost">
             <summary>
             Creates a new record in the database.
@@ -42,14 +58,88 @@
             </summary>
             <returns>Forwarding to the index page.</returns>
         </member>
+        <member name="F:Abschlussprojekt2021.Pages.EditJobAdModel._unitOfWork">
+            <value>Private field of the IUnitOfWork interface.</value>
+        </member>
+        <member name="F:Abschlussprojekt2021.Pages.EditJobAdModel._mapper">
+            <value>Private field of the IMapper interface.</value>
+        </member>
+        <member name="P:Abschlussprojekt2021.Pages.EditJobAdModel.JobAd">
+            <value>Property to prepopulate the input fields of the form.</value>
+        </member>
+        <member name="P:Abschlussprojekt2021.Pages.EditJobAdModel.Dto">
+            <value>DTO Property to capture the input of the user.</value>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.EditJobAdModel.#ctor(Domain.Interfaces.IUnitOfWork,AutoMapper.IMapper)">
+            <summary>
+            Dependency of the IUnitOfWork interface made available via constructor injection.
+            </summary>
+            <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
+            <param name="mapper">Initialization parameters IMapper.</param>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.EditJobAdModel.OnGet(System.Int32)">
+            <summary>
+            When the method is called, the data record with the matching ID is fetched.
+            </summary>
+            <param name="id">The Id passed from the view.</param>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.EditJobAdModel.OnPost(System.Int32)">
+            <summary>
+            When the method is called, the data record is updated with the matching ID.
+            </summary>
+            <param name="id">The Id passed from the view.</param>
+            <returns>Forwarding to the index page.</returns>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.EditJobAdModel.OnPostCancelButton">
+            <summary>
+            If the user presses the cancel button in the view, he will be redirected to the index page.
+            </summary>
+            <returns>Forwarding to the index page.</returns>
+        </member>
         <member name="F:Abschlussprojekt2021.Pages.IndexModel._unitOfWork">
-            <value>Private field of the Unit of work.</value>
+            <value>Private field of the IUnitOfWork interface.</value>
         </member>
         <member name="M:Abschlussprojekt2021.Pages.IndexModel.#ctor(Domain.Interfaces.IUnitOfWork)">
             <summary>
-            Creates an instance of the class unit of work. This interface provides the DbContext.
+            Dependency of the IUnitOfWork interface made available via constructor injection.
             </summary>
-            <param name="unitOfWork">The entity needed for referencing.</param>
+            <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.IndexModel.OnPostDataSource(Syncfusion.EJ2.Base.DataManagerRequest)">
+            <summary>
+            Reads all data records in the JobAds table from the database. 
+            These are then transferred to the Syncfusion UI component DataGrid.
+            </summary>
+            <param name="dm"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Abschlussprojekt2021.Pages.JobDetailsModel._unitOfWork">
+            <value>Private field of the IUnitOfWork interface.</value>
+        </member>
+        <member name="F:Abschlussprojekt2021.Pages.JobDetailsModel._mapper">
+            <value>Private field of the IMapper interface.</value>
+        </member>
+        <member name="P:Abschlussprojekt2021.Pages.JobDetailsModel.JobAd">
+            <value>Property to prepopulate the input fields of the form.</value>
+        </member>
+        <member name="P:Abschlussprojekt2021.Pages.JobDetailsModel.Input">
+            <value></value>
+        </member>
+        <member name="P:Abschlussprojekt2021.Pages.JobDetailsModel.Dto">
+            <value>DTO Property to capture the input of the user.</value>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.JobDetailsModel.#ctor(Domain.Interfaces.IUnitOfWork,AutoMapper.IMapper)">
+            <summary>
+            Dependency of the IUnitOfWork interface made available via constructor injection.
+            </summary>
+            <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
+            <param name="mapper">Initialization parameters IMapper.</param>
+        </member>
+        <member name="M:Abschlussprojekt2021.Pages.JobDetailsModel.OnGet(System.Int32)">
+            <summary>
+            When the method is called, the data record with the matching ID is fetched.
+            </summary>
+            <param name="id"></param>
         </member>
     </members>
 </doc>
