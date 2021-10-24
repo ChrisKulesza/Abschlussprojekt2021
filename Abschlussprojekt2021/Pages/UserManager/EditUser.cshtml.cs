@@ -39,7 +39,7 @@ namespace Abschlussprojekt2021.Pages.UserManager
             }
 
             _unitOfWork.ApplicationUser.Update(user);
-            _unitOfWork.Complete();
+            _unitOfWork.CompleteAsync();
 
             return Redirect("/UserManager/index");
         }

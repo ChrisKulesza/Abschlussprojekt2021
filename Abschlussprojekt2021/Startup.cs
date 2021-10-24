@@ -32,6 +32,7 @@ namespace Abschlussprojekt2021
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Database Context
             // Register DatabaseContext class DataAccess.EFCore.Data
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -39,6 +40,7 @@ namespace Abschlussprojekt2021
                     Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
             });
+            #endregion
 
             // DI Synfuction RTE UI component service
             services.AddScoped<SyncfusionOptionsService>();
@@ -107,15 +109,6 @@ namespace Abschlussprojekt2021
             });
 
             #region AutoMapper
-            // Auto Mapper Configurations
-            //var mapperConfig = new MapperConfiguration(config =>
-            //{
-            //    config.AddProfile(new ModelMapper());
-            //});
-
-            //IMapper mapper = mapperConfig.CreateMapper();
-            //services.AddSingleton(mapper);
-
             services.AddAutoMapper(typeof(Startup));
             #endregion
 

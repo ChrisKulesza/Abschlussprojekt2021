@@ -16,7 +16,7 @@ namespace Abschlussprojekt2021.Pages
         private readonly IMapper _mapper;
 
         /// <summary>
-        /// Dependency of the IUnitOfWork interface made available via constructor injection.
+        /// Initializes a new instance. Dependency of the IUnitOfWork interface made available via constructor injection.
         /// </summary>
         /// <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
         /// <param name="mapper">Initialization parameters IMapper.</param>
@@ -50,7 +50,7 @@ namespace Abschlussprojekt2021.Pages
                 // Create a new record of the JobAd table in memory.
                 _unitOfWork.JobAd.Insert(newJobAd);
                 // Write the record in memory to the JobAd table in the database.
-                _unitOfWork.Complete();
+                _unitOfWork.CompleteAsync();
             }
 
             // Redirecting to the index page.

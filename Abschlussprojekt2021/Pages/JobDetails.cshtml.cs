@@ -25,7 +25,7 @@ namespace Abschlussprojekt2021.Pages
         public JobAdDto Dto { get; set; }
 
         /// <summary>
-        /// Dependency of the IUnitOfWork interface made available via constructor injection.
+        /// Initializes a new instance. Dependency of the IUnitOfWork interface made available via constructor injection.
         /// </summary>
         /// <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
         /// <param name="mapper">Initialization parameters IMapper.</param>

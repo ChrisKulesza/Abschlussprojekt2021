@@ -16,7 +16,8 @@ namespace Abschlussprojekt2021.Pages
         private readonly IUnitOfWork _unitOfWork;
 
         /// <summary>
-        /// Dependency of the IUnitOfWork interface made available via constructor injection.
+        /// Initializes a new instance. Dependency of the IUnitOfWork interface made 
+        /// available via constructor injection.
         /// </summary>
         /// <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
         public IndexModel(IUnitOfWork unitOfWork)
@@ -52,7 +53,7 @@ namespace Abschlussprojekt2021.Pages
             // Removes the passed record of the JobAd table in memory.
             _unitOfWork.JobAd.Remove(entity);
             // Writes the new status of the data record to the JobAd table.
-            _unitOfWork.Complete();
+            _unitOfWork.CompleteAsync();
         }
 
         // OnPost handler - Syncfusion UrlAdaptor | Duplicate
@@ -72,7 +73,7 @@ namespace Abschlussprojekt2021.Pages
             // Create a new record of the JobAd table in memory.
             _unitOfWork.JobAd.Insert(job);
             // Write the record in memory to the JobAd table in the database.
-            _unitOfWork.Complete();
+            _unitOfWork.CompleteAsync();
         }
     }
 }
