@@ -13,6 +13,9 @@ namespace DataAccess.EFCore.UnitOfWork
         /// <value>Constructor injection private field.</value>
         private readonly ApplicationDbContext _context;
 
+        public IJobAdRepository JobAd { get; private set; }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UnitOfWork"/> class.
         /// </summary>
@@ -23,10 +26,6 @@ namespace DataAccess.EFCore.UnitOfWork
             JobAd = new JobAdRepository(_context);
             ApplicationUser = new ApplicationUserRepository(_context);
         }
-
-        public IJobAdRepository JobAd { get; private set; }
-
-        public IApplicationUserRepository ApplicationUser { get; private set; }
 
         /// <inheritdoc cref="IUnitOfWork"/>
         public int Complete()

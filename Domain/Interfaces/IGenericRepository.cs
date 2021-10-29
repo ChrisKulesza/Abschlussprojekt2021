@@ -11,7 +11,8 @@ namespace Domain.Interfaces
         /// <summary>
         /// Gets all.
         /// </summary>
-        /// <returns>Return a <see cref="IEnumerable{T}"/> that contains elements from the input sequence.</returns>
+        /// <returns>Return a <see cref="IEnumerable{T}"/> that contains elements 
+        /// from the input sequence.</returns>
         IEnumerable<T> GetAll();
 
         /// <summary>

@@ -4,6 +4,7 @@ using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace Abschlussprojekt2021.Pages
 {
@@ -14,6 +15,8 @@ namespace Abschlussprojekt2021.Pages
         private readonly IUnitOfWork _unitOfWork;
         /// <value>Private field of the IMapper interface.</value>
         private readonly IMapper _mapper;
+        /// <value>Private field for ILogger.</value>
+        private readonly ILogger _logger;
 
         /// <value>Property to prepopulate the input fields of the form.</value>
         public JobAd JobAd { get; set; }
@@ -26,10 +29,11 @@ namespace Abschlussprojekt2021.Pages
         /// </summary>
         /// <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
         /// <param name="mapper">Initialization parameters IMapper.</param>
-        public EditJobAdModel(IUnitOfWork unitOfWork, IMapper mapper)
+        public EditJobAdModel(IUnitOfWork unitOfWork, IMapper mapper, ILogger logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _logger = logger;
         }
 
         /// <summary>
@@ -40,6 +44,8 @@ namespace Abschlussprojekt2021.Pages
         {
             // Retrieves the data record from the JobAd table from the database with the passed ID.
             JobAd = _unitOfWork.JobAd.GetById(id);
+            // Output object id on the console 
+            _logger.LogInformation($"Get JobAd with Id: {id} from database.");
             // Mapping JobAd to the JobAdDto class.
             Dto = _mapper.Map<JobAdDto>(JobAd);
         }

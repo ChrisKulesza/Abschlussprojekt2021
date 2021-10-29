@@ -4,6 +4,7 @@ using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace Abschlussprojekt2021.Pages
 {
@@ -14,16 +15,19 @@ namespace Abschlussprojekt2021.Pages
         private readonly IUnitOfWork _unitOfWork;
         /// <value>Private field of the IMapper interface.</value>
         private readonly IMapper _mapper;
+        /// <value>Private field for ILogger.</value>
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes a new instance. Dependency of the IUnitOfWork interface made available via constructor injection.
         /// </summary>
         /// <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
         /// <param name="mapper">Initialization parameters IMapper.</param>
-        public CreateJobAdModel(IUnitOfWork unitOfWork, IMapper mapper)
+        public CreateJobAdModel(IUnitOfWork unitOfWork, IMapper mapper, ILogger logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _logger = logger;
         }
 
         /// <value>Property to prepopulate the input fields of the form.</value>
@@ -40,6 +44,8 @@ namespace Abschlussprojekt2021.Pages
             // Check whether the transferred DTO object is valid. Negation of the result.
             if (!ModelState.IsValid)
             {
+                // Output error message on the console
+                _logger.LogError("Invalid JobAd object sent from client.");
                 // If the model is not valid then redirect the user to the index page.
                 return Redirect("Index");
             } else
@@ -65,6 +71,8 @@ namespace Abschlussprojekt2021.Pages
         {
             if (!ModelState.IsValid)
             {
+                // Output error message on the console
+                _logger.LogError("Invalid JobAd object sent from client.");
                 // Redirecting to the index page.
                 return Redirect("Index");
             }

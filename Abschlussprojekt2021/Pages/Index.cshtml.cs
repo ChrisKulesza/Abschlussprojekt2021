@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using Syncfusion.EJ2.Base;
 using System;
 using System.Linq;
@@ -14,15 +14,18 @@ namespace Abschlussprojekt2021.Pages
     {
         /// <value>Private field of the IUnitOfWork interface.</value>
         private readonly IUnitOfWork _unitOfWork;
+        /// <value>Private field for ILogger.</value>
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes a new instance. Dependency of the IUnitOfWork interface made 
         /// available via constructor injection.
         /// </summary>
         /// <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
-        public IndexModel(IUnitOfWork unitOfWork)
+        public IndexModel(IUnitOfWork unitOfWork, ILogger logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
         /// <summary>
@@ -35,6 +38,7 @@ namespace Abschlussprojekt2021.Pages
         {
             // Fetches all records of the JobAd table from the database using Unit of work
             var data = _unitOfWork.JobAd.GetAll();
+            _logger.LogInformation("Returned all JobAds from database.");
 
             // Counts the number of data records in the transferred IEnumerable and casts this explicitly beforehand.
             int count = data.Cast<JobAd>().Count();
@@ -49,6 +53,8 @@ namespace Abschlussprojekt2021.Pages
             int id = Convert.ToInt32(value.Value.Id);
             // Looks for the appropriate data record based on the passed ID.
             var entity = _unitOfWork.JobAd.GetById(id);
+            // Output object id on the console
+            _logger.LogInformation($"Get JobAd with Id: {id} from database.");
 
             // Removes the passed record of the JobAd table in memory.
             _unitOfWork.JobAd.Remove(entity);

@@ -11,7 +11,7 @@ namespace DataAccess.EFCore.Repositories
     /// <typeparam name="T">The type of the entity.</typeparam>
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        //Protected Variables
+        /// <value>Constructor injection database context private field.</value>
         protected readonly ApplicationDbContext _context;
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace DataAccess.EFCore.Repositories
         /// 
         /// <inheritdoc cref="Domain.Interfaces.IGenericRepository{T}.GetAll"/>
         /// <returns>A <see cref="IEnumerable{T}" /> that contains elements from the input sequence.</returns>
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }

@@ -4,6 +4,7 @@ using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace Abschlussprojekt2021.Pages.UserManager
 {
@@ -43,7 +44,7 @@ namespace Abschlussprojekt2021.Pages.UserManager
             public string Role { get; set; }
         }
 
-        public RedirectResult OnPostInsert()
+        public async Task<RedirectResult> OnPostInsert()
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +58,7 @@ namespace Abschlussprojekt2021.Pages.UserManager
                 }
 
             _unitOfWork.ApplicationUser.Insert(User);
-            _unitOfWork.CompleteAsync();
+            await _unitOfWork.CompleteAsync();
 
             return Redirect("/UserManager/Index");
         }
