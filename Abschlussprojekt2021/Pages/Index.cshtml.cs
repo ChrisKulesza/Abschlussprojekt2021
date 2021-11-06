@@ -22,7 +22,7 @@ namespace Abschlussprojekt2021.Pages
         /// available via constructor injection.
         /// </summary>
         /// <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
-        public IndexModel(IUnitOfWork unitOfWork, ILogger logger)
+        public IndexModel(IUnitOfWork unitOfWork, ILogger<IndexModel> logger)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;

@@ -23,7 +23,7 @@ namespace Abschlussprojekt2021.Pages
         /// </summary>
         /// <param name="unitOfWork">Initialization parameters IUnitOfWork.</param>
         /// <param name="mapper">Initialization parameters IMapper.</param>
-        public CreateJobAdModel(IUnitOfWork unitOfWork, IMapper mapper, ILogger logger)
+        public CreateJobAdModel(IUnitOfWork unitOfWork, IMapper mapper, ILogger<CreateJobAdModel> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
