@@ -46,6 +46,7 @@ namespace Abschlussprojekt2021.Pages
             return dm.RequiresCounts ? new JsonResult(new { result = data.Skip(dm.Skip).Take(dm.Take), count = count }) : new JsonResult(data);
         }
 
+        // Got some problems with this endpoint
         // OnPost handler - Syncfusion UrlAdaptor | Delete
         public void OnPostDelete([FromBody]CRUDModel<JobAd> value)
         {
@@ -62,6 +63,7 @@ namespace Abschlussprojekt2021.Pages
             _unitOfWork.CompleteAsync();
         }
 
+        // Got some problems with this endpoint
         // OnPost handler - Syncfusion UrlAdaptor | Duplicate
         public void OnPostDuplicate([FromBody]CRUDModel<JobAd> entity)
         {
