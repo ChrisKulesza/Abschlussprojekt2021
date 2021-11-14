@@ -57,6 +57,8 @@ namespace Abschlussprojekt2021.Pages
                 _unitOfWork.JobAd.Insert(newJobAd);
                 // Write the record in memory to the JobAd table in the database.
                 _unitOfWork.CompleteAsync();
+                // Log that a new data record with the name has been persisted.
+                _logger.LogInformation($"New record with the Name: {newJobAd.Name} was persisted in the database.");
             }
 
             // Redirecting to the index page.
@@ -69,6 +71,7 @@ namespace Abschlussprojekt2021.Pages
         /// <returns>Forwarding to the index page.</returns>
         public RedirectResult OnPostCancelButton()
         {
+            // Check whether the transferred data record is valid. (negated)
             if (!ModelState.IsValid)
             {
                 // Output error message on the console

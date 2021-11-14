@@ -59,8 +59,10 @@ namespace Abschlussprojekt2021.Pages
 
             // Removes the passed record of the JobAd table in memory.
             _unitOfWork.JobAd.Remove(entity);
+            // Output on the console which data record was deleted. (id) 
+            _logger.LogInformation($"Data record with id {id} deleted from the database.");
             // Writes the new status of the data record to the JobAd table.
-            _unitOfWork.CompleteAsync();
+            _unitOfWork.Complete();
         }
 
         // Got some problems with this endpoint
@@ -81,7 +83,9 @@ namespace Abschlussprojekt2021.Pages
             // Create a new record of the JobAd table in memory.
             _unitOfWork.JobAd.Insert(job);
             // Write the record in memory to the JobAd table in the database.
-            _unitOfWork.CompleteAsync();
+            _unitOfWork.Complete();
+            // Output on the console which data record was duplicated. (name)
+            _logger.LogInformation($"Data record with the Name: {job.Name} was duplicated and persisted in the database.");
         }
     }
 }

@@ -45,10 +45,10 @@ namespace Abschlussprojekt2021.Pages
         {
             // Retrieves the data record from the JobAd table from the database with the passed ID.
             JobAd = _unitOfWork.JobAd.GetById(id);
-            // Output object id on the console 
-            _logger.LogInformation($"Get JobAd with Id: {id} from database.");
             // Mapping JobAd to the JobAdDto class.
             Dto = _mapper.Map<JobAdDto>(JobAd);
+            // Output object id on the console 
+            _logger.LogInformation($"Get JobAd with Id: {id} from database.");
         }
 
         /// <summary>
@@ -70,7 +70,9 @@ namespace Abschlussprojekt2021.Pages
                 // Create a new record of the JobAd table in memory.
                 _unitOfWork.JobAd.Update(jobAd);
                 // Write the record in memory to the JobAd table in the database.
-                _unitOfWork.CompleteAsync();
+                _unitOfWork.Complete();
+                // Log that the data record with the id was changed and persisted in the database.
+                _logger.LogInformation($"Changes to the data set with Id: {jobAd.Id} were persisted in the database.");
             }
 
             // Redirecting to the index page.
