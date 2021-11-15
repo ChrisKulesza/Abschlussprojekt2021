@@ -1,3 +1,9 @@
+<style>
+H1{color:Blue !important;}
+H2{color:DarkOrange !important;}
+p{color:Black !important;}
+</style>
+
 # Abschlussprojekt2021
 ## Projektziel
 Dieses Projekt stellt mein Abschlussprojekt dar, welches ich im Rahmen meiner Umschulung zum Fachinformatiker für 
@@ -8,7 +14,7 @@ Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens dar
 - Besucher (nicht autorisiert)
   - bekommen die Stellenabzeigen in Form eines Data grid angezeigt
   - können über ein Icon zur Detailseite einer Stellenanzeige gelagen
-  - Bewerbung auf die Stelle erfolgt dann über ein Formular auf der Detailseite (<span style="color: red;">Noch nicht implementiert.</span>)
+  - Bewerbung auf die Stelle erfolgt dann über ein Formular auf der Detailseite (Noch nicht implementiert)
 - Editor (autorisiert)
   - erstellen, bearbeiten, löschen von Stellenanzeigen
 - Admin (autorisiert)
