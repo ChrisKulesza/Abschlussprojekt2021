@@ -1,8 +1,3 @@
-<style>
-H1{color:Blue !important;}
-H2{color:DarkOrange !important;}
-p{color:Black !important;}
-</style>
 
 # Abschlussprojekt2021
 ## Projektziel
@@ -44,3 +39,11 @@ Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens dar
 - Modelbinding
 - AJAX Calls
   - to trigger handler methods via Syncfusion commands
+
+```diff
++ Green
+- Red
+! Orange
+@@ Pink @@
+# Gray
+```
