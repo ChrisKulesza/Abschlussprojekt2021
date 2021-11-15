@@ -6,6 +6,9 @@ Anwendungsentwicklung absolivieren muss. Das Projekt ist Teil der Prüfung.
 ## Thema des Projekt
 Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens darstellt. Die folgenden Akteure gibt es auf der Webseite:
 - Besucher (nicht autorisiert)
+  - bekommen die Stellenabzeigen in Form eines Data grid angezeigt
+  - können über ein Icon zur Detailseite einer Stellenanzeige gelagen
+  - Bewerbung auf die Stelle erfolgt dann über ein Formular auf der Detailseite
 - Editor (autorisiert)
   - erstellen, bearbeiten, löschen von Stellenanzeigen
 - Admin (autorisiert)
