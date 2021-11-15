@@ -22,6 +22,7 @@ Die folgenden Akteure gibt es auf der Webseite:
 ## Technologie
 ### Genutzte Frameworks
 - Entity Framework
+- Identity
 - Nutzerverwaltung mit Identity
 
 ### Third party librarys
