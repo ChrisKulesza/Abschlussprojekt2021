@@ -5,7 +5,10 @@ Dieses Projekt stellt mein Abschlussprojekt dar, welches ich im Rahmen meiner Um
 Anwendungsentwicklung absolivieren muss. Das Projekt ist Teil der Prüfung.
 
 ## Thema des Projekt
-Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens darstellt. Die folgenden Akteure gibt es auf der Webseite:
+Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens darstellt. 
+
+## Akteure der Web Application
+Die folgenden Akteure gibt es auf der Webseite:
 - Besucher (nicht autorisiert)
   - bekommen die Stellenabzeigen in Form eines Data grid angezeigt
   - können über ein Icon zur Detailseite einer Stellenanzeige gelagen
