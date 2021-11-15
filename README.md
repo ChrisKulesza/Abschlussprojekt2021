@@ -10,6 +10,9 @@ Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens dar
   - bekommen die Stellenabzeigen in Form eines Data grid angezeigt
   - können über ein Icon zur Detailseite einer Stellenanzeige gelagen
   - Bewerbung auf die Stelle erfolgt dann über ein Formular auf der Detailseite (Noch nicht implementiert)
+  - ```diff
+  - noch nicht implementiert
+  ```
 - Editor (autorisiert)
   - erstellen, bearbeiten, löschen von Stellenanzeigen
 - Admin (autorisiert)
@@ -39,11 +42,3 @@ Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens dar
 - Modelbinding
 - AJAX Calls
   - to trigger handler methods via Syncfusion commands
-
-```diff
-+ Green
-- Red
-! Orange
-@@ Pink @@
-# Gray
-```
