@@ -1,6 +1,4 @@
 # Abschlussprojekt2021
-Abschlussprüfung Winter 2021 Sicherung
-
 ## Projektziel
 Dieses Projekt stellt mein Abschlussprojekt dar, welches ich im Rahmen meiner Umschulung zum Fachinformatiker für 
 Anwendungsentwicklung absolivieren muss. Das Projekt ist Teil der Prüfung.
