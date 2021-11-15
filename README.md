@@ -2,8 +2,8 @@
 Abschlussprüfung Winter 2021 Sicherung
 
 ## Projektziel
-Dieses Projekt stellt mein Abschlussprojekt, welches ich im Rahmen meiner Umschulung zum Fachinformatiker für Anwendungsentwicklung absolivieren muss. Das 
-Projekt ist Teil der Prüfung.
+Dieses Projekt stellt mein Abschlussprojekt dar, welches ich im Rahmen meiner Umschulung zum Fachinformatiker für 
+Anwendungsentwicklung absolivieren muss. Das Projekt ist Teil der Prüfung.
 
 ## Thema des Projekt
 Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens darstellt. Akteure dieser Seite sind folgende Nutzergruppen:
@@ -36,5 +36,4 @@ Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens dar
 ### Data binding
 - Modelbinding
 - AJAX Calls
-
-## Screenshots
+  - to trigger handler methods via Syncfusion commands
