@@ -10,7 +10,7 @@ Erstellung einer Razor Page, welche die Karriere Webseite eines Unternehmens dar
 ## Akteure der Web Application
 Die folgenden Akteure gibt es auf der Webseite:
 - Besucher (nicht autorisiert)
-  - bekommen die Stellenabzeigen in Form eines Data grid angezeigt
+  - bekommen die Stellenanzeigen in Form eines Data grid angezeigt
   - können über ein Icon zur Detailseite einer Stellenanzeige gelagen
   - !!! Bewerbung auf die Stelle erfolgt dann über ein Formular auf der Detailseite !!! (Noch nicht implementiert) !!!
 - Editor (autorisiert)
