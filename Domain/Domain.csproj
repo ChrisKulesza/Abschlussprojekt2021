@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+<!-- Review: Warum heißt dieses Projekt Domain? Ich weiß gerade nicht, ob es dort irgendwelche Guidance gibt?
+Ich baue meine Projektnamen immer auf. Zum Beispiel
+JobAdWebApp <- The web application
+JobAd.Core <- Shared models and interfaces (Try to have as less nuget dependencies as possible)
+JobAd.DataAccess <- Specific project
+-->
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
@@ -10,9 +15,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
+<!-- Review: I don't like the dependency to the efcore nuget package here.
+Dem Domain Projekt sollte es egal sein, welches Framework der DataAccess benutzt.
+Oft gibt es ein Projekt, welche auch nach außen hin sichtbar gemacht wird. Dies könnte zB Domain sein.
+Dann wird diese Projekt von anderen Applikationen verwendet, um zB ein Model wiederzuverwenden.
+In diesem Fall müsste die andere Application sich das ganze EntityFramework ziehen.
+Ein anderes Beispiel ist ein Unit Test Projekt, welches eine Klasse mit Hilfe eines Interfaces mocken möchte. 
+Auch da wird dann das Entity Framework referenziert, obwohl nicht benötigt. -->
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

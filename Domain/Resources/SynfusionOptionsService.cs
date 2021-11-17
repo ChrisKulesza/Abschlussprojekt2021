@@ -7,7 +7,7 @@ namespace Domain.Resources
     /// </summary>
     public class SyncfusionOptionsService
     {
-        IEnumerable<string> _rteOptionsListMinimal = new List<string>()
+        readonly IEnumerable<string> _rteOptionsListMinimal = new List<string>()
         {
             "Bold", "Italic", "FontName", "FontSize", "FontColor", "|",
             "OrderedList", "UnorderedList", "|",
@@ -15,8 +15,7 @@ namespace Domain.Resources
             "CreateLink", "|"
             // "Undo", "Redo"
         };
-
-        IEnumerable<string> _rteOptionsListMaximal = new List<string>()
+        readonly IEnumerable<string> _rteOptionsListMaximal = new List<string>()
         {
             "Bold", "Italic", "Underline", "StrikeThrough",
                 "FontName", "FontSize", "FontColor", "BackgroundColor", "LowerCase", "UpperCase", "|",

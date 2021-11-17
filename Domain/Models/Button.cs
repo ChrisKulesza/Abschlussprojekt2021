@@ -6,12 +6,12 @@
     public class Button
     {
         /// <value>Text value of the button.</value>
-        public string content { get; set; }
+        public string Content { get; set; }
 
         /// <value>Determination of whether the button is a first-order button.</value>
-        public bool isPrimary { get; set; }
+        public bool IsPrimary { get; set; }
 
         /// <value>Css class of the created button.</value>
-        public string cssClass { get; set; }
+        public string CssClass { get; set; }
     }
 }
