@@ -16,6 +16,8 @@
         // Form data
         public const string formFirstName = "Vorname";
         public const string formLastName = "Nachname";
+        ///Review: Constants should be upper case. Auch wenn ich in meinem Review gerade Deutsch und Englisch
+        ///vermische sollte man im Code einheitlich bleiben --> FormFullName
         public const string formLastVornameNachname = "Vorname Nachname";
         public const string formNameJobAd = "Bezeichnung der Stellenbeschreibung";
         public const string formEmail = "Email";

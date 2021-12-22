@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
+    ///Review: Wenn ein Interface sehr spezifisch zu einem Projekt ist, dann würde ich das Interface in diesem Projekt lassen. 
+    ///Aber das macht vermutlich jeder so wie er mag. 
+   
     /// <summary>
     /// Unit of work interface
     /// Maintains a list of objects affected by a business transaction and coordinates 

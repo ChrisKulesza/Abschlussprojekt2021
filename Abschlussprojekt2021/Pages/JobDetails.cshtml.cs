@@ -53,6 +53,7 @@ namespace Abschlussprojekt2021.Pages
             Dto = _mapper.Map<JobAdDto>(JobAd);
         }
 
+        // Review: Kann gelöscht werden?
         public class InputModel
         {
             [Required]

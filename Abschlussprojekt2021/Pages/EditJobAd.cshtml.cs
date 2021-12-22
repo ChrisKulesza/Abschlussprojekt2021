@@ -67,11 +67,17 @@ namespace Abschlussprojekt2021.Pages
                 // Mapping DTO to the JobAd class.
                 var jobAd = _mapper.Map<JobAd>(Dto);
 
+                ///Review: Wo werden eigtl deine Exceptions gefangen? Bisher habe ich noch keine Try Catches gesehen. Manchmal möchte man auch einmal ein Exception durchlaufen lassen,
+                ///aber besonders bei WebApplications will man eigtl dem User keine technischen Details offenbaren. Neben einer schlechten benutzerfreunldihckeit könnte es
+                ///auch ein Sicherheitsrisiko werden. Außerdem kann es auch exceptions geben, die nicht gleich zum Schließen des Threads führen sollen sondern lediglich zu einer 
+                ///Nachricht an den Benutzer
+
                 // Create a new record of the JobAd table in memory.
                 _unitOfWork.JobAd.Update(jobAd);
                 // Write the record in memory to the JobAd table in the database.
                 _unitOfWork.CompleteAsync();
             }
+            /// Review: Der User sollte informiert werden, dass die Operation erfolgreich war.
 
             // Redirecting to the index page.
             return Redirect("/Index");
@@ -83,14 +89,6 @@ namespace Abschlussprojekt2021.Pages
         /// <returns>Forwarding to the index page.</returns>
         public RedirectResult OnPostCancelButton()
         {
-            // Check whether the transferred DTO object is valid. Negation of the result.
-            if (!ModelState.IsValid)
-            {
-                // Redirecting to the index page.
-                return Redirect("/Index");
-            }
-
-            // Redirecting to the index page.
             return Redirect("/Index");
         }
     }

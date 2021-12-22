@@ -32,6 +32,9 @@ namespace Abschlussprojekt2021
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // review: Ich persönlich mag regions nicht.
+            // Wenn eine Funktion so lang ist, dass sie unübersichtlich ist und man regions verwenden muss,
+            // dann sollte man eher darüber nachdenken diese in weitere Methoden aufzuteilen
             #region Database Context
             // Register DatabaseContext class DataAccess.EFCore.Data
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -46,6 +49,9 @@ namespace Abschlussprojekt2021
             services.AddScoped<SyncfusionOptionsService>();
 
             #region Repository Pattern
+            // review: Bei Transient wird bei jeder Verwendung eine neue Instance erstellt.
+            // Dies kann zu vielen Datenbank-Connections führen. Evtl wäre Scoped hier sinnvoller.
+            // Aber dafür muss ich mir erst einmal den Code anschauen
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient(typeof(IApplicationUserRepository), typeof(ApplicationUserRepository));
             services.AddTransient(typeof(IJobAdRepository), typeof(JobAdRepository));

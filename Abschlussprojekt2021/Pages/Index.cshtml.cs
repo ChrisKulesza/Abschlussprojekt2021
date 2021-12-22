@@ -32,9 +32,9 @@ namespace Abschlussprojekt2021.Pages
         /// Reads all data records in the JobAds table from the database. 
         /// These are then transferred to the Syncfusion UI component DataGrid.
         /// </summary>
-        /// <param name="dm"></param>
+        /// <param name="dm"></param> REVIEW: Name nicht wirklich aussagekräftig.
         /// <returns></returns>
-        public JsonResult OnPostDataSource([FromBody] DataManagerRequest dm)
+        public JsonResult OnPostDataSource([FromBody] DataManagerRequest dm) 
         {
             // Fetches all records of the JobAd table from the database using Unit of work
             var data = _unitOfWork.JobAd.GetAll();
@@ -43,7 +43,7 @@ namespace Abschlussprojekt2021.Pages
             // Counts the number of data records in the transferred IEnumerable and casts this explicitly beforehand.
             int count = data.Cast<JobAd>().Count();
             // Returns the data records received from the database in form of a JsonResult.
-            return dm.RequiresCounts ? new JsonResult(new { result = data.Skip(dm.Skip).Take(dm.Take), count = count }) : new JsonResult(data);
+            return dm.RequiresCounts ? new JsonResult(new { result = data.Skip(dm.Skip).Take(dm.Take), count }) : new JsonResult(data);
         }
 
         // OnPost handler - Syncfusion UrlAdaptor | Delete

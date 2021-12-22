@@ -46,7 +46,7 @@ namespace Abschlussprojekt2021.Pages.UserManager
 
         public async Task<RedirectResult> OnPostInsert()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Redirect("/UserManager/Index");
             } else
